@@ -15,7 +15,7 @@ namespace DrugStoreManagement
         private static SqlConnection mySqlConnection;
         private SqlDataAdapter mySqlDataAdapter;
 
-        // Connect to the database
+        // kết nối đến DB
         public bool OpenDB()
         {
             string conStr = "Data Source=LAPTOP-VHVPC4RM\\SQLEXPRESS;Initial Catalog=Mart;Integrated Security=True";
@@ -33,7 +33,8 @@ namespace DrugStoreManagement
             return true;
         }
 
-        // Query data into a DataTable
+        //
+        // 
         public DataTable RunQuery(string query, params SqlParameter[] parameters)
         {
             DataTable dt = new DataTable();

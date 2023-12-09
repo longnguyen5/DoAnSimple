@@ -43,8 +43,7 @@ namespace DoAnSimple
             }
             else
             {
-                id = Convert.ToInt32(dt.Rows[0]["UserID"]);
-                acctype = Convert.ToInt32(dt.Rows[0]["AccountType"]);
+                acctype = Convert.ToInt32(dt.Rows[0]["Type"]);
             }
             if (acctype == 0) // Nhân viên
             {
@@ -56,13 +55,7 @@ namespace DoAnSimple
                 ManagerMain frm = new ManagerMain();
                 frm.ShowDialog();
             }
-
             this.Hide();
-        }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
