@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace DoAnSimple
 {
-    public partial class frmOrder : UserControl
+    public partial class frmEmployee : UserControl
     {
-        public frmOrder()
+        public frmEmployee()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
