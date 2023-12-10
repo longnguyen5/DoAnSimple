@@ -61,5 +61,25 @@ namespace DoAnSimple
         {
             openChildControl(new frmSupplier());
         }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            openChildControl(new frmImport());
+        }
+
+        private void btnOrder_Click(object sender, EventArgs e)
+        {
+            openChildControl(new frmOrder());
+        }
+
+        private void btnCustomer_Click(object sender, EventArgs e)
+        {
+            openChildControl(new frmCustomer());
+        }
+
+        private void btnStatic_Click(object sender, EventArgs e)
+        {
+            openChildControl(new frmStatic());
+        }
     }
 }

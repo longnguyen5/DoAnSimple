@@ -130,6 +130,9 @@
     <EmbeddedResource Include="frmCategory.resx">
       <DependentUpon>frmCategory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomer.resx">
+      <DependentUpon>frmCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmImport.resx">
       <DependentUpon>frmImport.cs</DependentUpon>
     </EmbeddedResource>

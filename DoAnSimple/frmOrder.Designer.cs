@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.cmbCustomerFilter = new System.Windows.Forms.ComboBox();
-            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.txtCustomerSearch = new System.Windows.Forms.TextBox();
             this.dGVOrder = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cmbDiscount = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
@@ -42,9 +43,9 @@
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.dateDate = new System.Windows.Forms.DateTimePicker();
-            this.txtId = new System.Windows.Forms.TextBox();
-            this.txtName = new System.Windows.Forms.TextBox();
+            this.dateOrderDate = new System.Windows.Forms.DateTimePicker();
+            this.txtCustomerName = new System.Windows.Forms.TextBox();
+            this.txtPhone = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -56,12 +57,12 @@
             this.dGVProduct = new System.Windows.Forms.DataGridView();
             this.btnProductSearch = new System.Windows.Forms.Button();
             this.cmbProductFilter = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtProductSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.btnRemoveProduct = new System.Windows.Forms.Button();
+            this.btnAddProduct = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnAddOrder = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dGVOrder)).BeginInit();
@@ -81,12 +82,12 @@
             this.cmbCustomerFilter.Size = new System.Drawing.Size(165, 24);
             this.cmbCustomerFilter.TabIndex = 1;
             // 
-            // txtPrice
+            // txtCustomerSearch
             // 
-            this.txtPrice.Location = new System.Drawing.Point(10, 21);
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(255, 22);
-            this.txtPrice.TabIndex = 8;
+            this.txtCustomerSearch.Location = new System.Drawing.Point(10, 21);
+            this.txtCustomerSearch.Name = "txtCustomerSearch";
+            this.txtCustomerSearch.Size = new System.Drawing.Size(255, 22);
+            this.txtCustomerSearch.TabIndex = 8;
             // 
             // dGVOrder
             // 
@@ -96,13 +97,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dGVOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGVOrder.Location = new System.Drawing.Point(6, 195);
+            this.dGVOrder.Location = new System.Drawing.Point(6, 212);
             this.dGVOrder.MultiSelect = false;
             this.dGVOrder.Name = "dGVOrder";
             this.dGVOrder.ReadOnly = true;
             this.dGVOrder.RowHeadersWidth = 51;
             this.dGVOrder.RowTemplate.Height = 24;
-            this.dGVOrder.Size = new System.Drawing.Size(381, 193);
+            this.dGVOrder.Size = new System.Drawing.Size(381, 171);
             this.dGVOrder.TabIndex = 0;
             // 
             // groupBox4
@@ -110,6 +111,8 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.cmbDiscount);
+            this.groupBox4.Controls.Add(this.label3);
             this.groupBox4.Controls.Add(this.txtQuantity);
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.txtProductName);
@@ -119,9 +122,9 @@
             this.groupBox4.Controls.Add(this.txtTotal);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Controls.Add(this.dateDate);
-            this.groupBox4.Controls.Add(this.txtId);
-            this.groupBox4.Controls.Add(this.txtName);
+            this.groupBox4.Controls.Add(this.dateOrderDate);
+            this.groupBox4.Controls.Add(this.txtCustomerName);
+            this.groupBox4.Controls.Add(this.txtPhone);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.dGVOrder);
@@ -131,6 +134,23 @@
             this.groupBox4.TabIndex = 13;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Hóa đơn";
+            // 
+            // cmbDiscount
+            // 
+            this.cmbDiscount.FormattingEnabled = true;
+            this.cmbDiscount.Location = new System.Drawing.Point(142, 165);
+            this.cmbDiscount.Name = "cmbDiscount";
+            this.cmbDiscount.Size = new System.Drawing.Size(241, 24);
+            this.cmbDiscount.TabIndex = 28;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(16, 169);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 16);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "Giảm giá:";
             // 
             // txtQuantity
             // 
@@ -166,17 +186,20 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(5, 394);
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExport.Location = new System.Drawing.Point(12, 389);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(108, 24);
             this.btnExport.TabIndex = 19;
             this.btnExport.Text = "Xuất hóa đơn";
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(345, 397);
+            this.label9.Location = new System.Drawing.Point(345, 392);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(38, 16);
             this.label9.TabIndex = 22;
@@ -184,8 +207,9 @@
             // 
             // txtTotal
             // 
+            this.txtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTotal.Enabled = false;
-            this.txtTotal.Location = new System.Drawing.Point(227, 394);
+            this.txtTotal.Location = new System.Drawing.Point(227, 389);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtTotal.Size = new System.Drawing.Size(116, 22);
@@ -194,8 +218,9 @@
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(155, 398);
+            this.label8.Location = new System.Drawing.Point(155, 393);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(66, 16);
             this.label8.TabIndex = 20;
@@ -210,27 +235,27 @@
             this.label7.TabIndex = 19;
             this.label7.Text = "Ngày, tháng (*):";
             // 
-            // dateDate
+            // dateOrderDate
             // 
-            this.dateDate.Location = new System.Drawing.Point(142, 79);
-            this.dateDate.Name = "dateDate";
-            this.dateDate.Size = new System.Drawing.Size(245, 22);
-            this.dateDate.TabIndex = 18;
+            this.dateOrderDate.Location = new System.Drawing.Point(142, 79);
+            this.dateOrderDate.Name = "dateOrderDate";
+            this.dateOrderDate.Size = new System.Drawing.Size(245, 22);
+            this.dateOrderDate.TabIndex = 18;
             // 
-            // txtId
+            // txtCustomerName
             // 
-            this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(142, 19);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(245, 22);
-            this.txtId.TabIndex = 15;
+            this.txtCustomerName.Enabled = false;
+            this.txtCustomerName.Location = new System.Drawing.Point(142, 19);
+            this.txtCustomerName.Name = "txtCustomerName";
+            this.txtCustomerName.Size = new System.Drawing.Size(245, 22);
+            this.txtCustomerName.TabIndex = 15;
             // 
-            // txtName
+            // txtPhone
             // 
-            this.txtName.Location = new System.Drawing.Point(142, 50);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(245, 22);
-            this.txtName.TabIndex = 14;
+            this.txtPhone.Location = new System.Drawing.Point(142, 50);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(245, 22);
+            this.txtPhone.TabIndex = 14;
             // 
             // label6
             // 
@@ -255,7 +280,7 @@
             this.groupBox1.Controls.Add(this.dGVCustomer);
             this.groupBox1.Controls.Add(this.btnCustomerSearch);
             this.groupBox1.Controls.Add(this.cmbCustomerFilter);
-            this.groupBox1.Controls.Add(this.txtPrice);
+            this.groupBox1.Controls.Add(this.txtCustomerSearch);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(17, 57);
             this.groupBox1.Name = "groupBox1";
@@ -268,9 +293,7 @@
             // 
             this.dGVCustomer.AllowUserToAddRows = false;
             this.dGVCustomer.AllowUserToDeleteRows = false;
-            this.dGVCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dGVCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dGVCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGVCustomer.Location = new System.Drawing.Point(9, 79);
             this.dGVCustomer.MultiSelect = false;
@@ -280,6 +303,7 @@
             this.dGVCustomer.RowTemplate.Height = 24;
             this.dGVCustomer.Size = new System.Drawing.Size(350, 143);
             this.dGVCustomer.TabIndex = 1;
+            this.dGVCustomer.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVCustomer_RowEnter);
             // 
             // btnCustomerSearch
             // 
@@ -289,6 +313,7 @@
             this.btnCustomerSearch.TabIndex = 13;
             this.btnCustomerSearch.Text = "Tìm";
             this.btnCustomerSearch.UseVisualStyleBackColor = true;
+            this.btnCustomerSearch.Click += new System.EventHandler(this.btnCustomerSearch_Click);
             // 
             // label5
             // 
@@ -313,10 +338,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.dGVProduct);
             this.groupBox2.Controls.Add(this.btnProductSearch);
             this.groupBox2.Controls.Add(this.cmbProductFilter);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.txtProductSearch);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(17, 291);
             this.groupBox2.Name = "groupBox2";
@@ -341,6 +368,7 @@
             this.dGVProduct.RowTemplate.Height = 24;
             this.dGVProduct.Size = new System.Drawing.Size(350, 155);
             this.dGVProduct.TabIndex = 1;
+            this.dGVProduct.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVProduct_RowEnter);
             // 
             // btnProductSearch
             // 
@@ -350,6 +378,7 @@
             this.btnProductSearch.TabIndex = 13;
             this.btnProductSearch.Text = "Tìm";
             this.btnProductSearch.UseVisualStyleBackColor = true;
+            this.btnProductSearch.Click += new System.EventHandler(this.btnProductSearch_Click);
             // 
             // cmbProductFilter
             // 
@@ -359,12 +388,12 @@
             this.cmbProductFilter.Size = new System.Drawing.Size(165, 24);
             this.cmbProductFilter.TabIndex = 1;
             // 
-            // textBox1
+            // txtProductSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(10, 21);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(255, 22);
-            this.textBox1.TabIndex = 8;
+            this.txtProductSearch.Location = new System.Drawing.Point(10, 21);
+            this.txtProductSearch.Name = "txtProductSearch";
+            this.txtProductSearch.Size = new System.Drawing.Size(255, 22);
+            this.txtProductSearch.TabIndex = 8;
             // 
             // label2
             // 
@@ -375,38 +404,35 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Tìm kiếm theo:";
             // 
-            // btnAdd
+            // btnRemoveProduct
             // 
-            this.btnAdd.Location = new System.Drawing.Point(5, 17);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(54, 24);
-            this.btnAdd.TabIndex = 14;
-            this.btnAdd.Text = "<";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnRemoveProduct.Location = new System.Drawing.Point(5, 17);
+            this.btnRemoveProduct.Name = "btnRemoveProduct";
+            this.btnRemoveProduct.Size = new System.Drawing.Size(54, 24);
+            this.btnRemoveProduct.TabIndex = 14;
+            this.btnRemoveProduct.Text = "<";
+            this.btnRemoveProduct.UseVisualStyleBackColor = true;
+            this.btnRemoveProduct.Click += new System.EventHandler(this.btnRemoveProduct_Click);
             // 
-            // btnRemove
+            // btnAddProduct
             // 
-            this.btnRemove.Location = new System.Drawing.Point(65, 17);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(54, 24);
-            this.btnRemove.TabIndex = 15;
-            this.btnRemove.Text = ">";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.btnAddProduct.Location = new System.Drawing.Point(65, 17);
+            this.btnAddProduct.Name = "btnAddProduct";
+            this.btnAddProduct.Size = new System.Drawing.Size(54, 24);
+            this.btnAddProduct.TabIndex = 15;
+            this.btnAddProduct.Text = ">";
+            this.btnAddProduct.UseVisualStyleBackColor = true;
+            this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
             // groupBox3
             // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.btnAddOrder);
             this.groupBox3.Controls.Add(this.btnSave);
             this.groupBox3.Controls.Add(this.btnNew);
-            this.groupBox3.Controls.Add(this.btnRemove);
-            this.groupBox3.Controls.Add(this.btnAdd);
+            this.groupBox3.Controls.Add(this.btnAddProduct);
+            this.groupBox3.Controls.Add(this.btnRemoveProduct);
             this.groupBox3.Location = new System.Drawing.Point(390, 484);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(393, 47);
@@ -414,14 +440,25 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Chức năng";
             // 
+            // btnAddOrder
+            // 
+            this.btnAddOrder.Location = new System.Drawing.Point(144, 17);
+            this.btnAddOrder.Name = "btnAddOrder";
+            this.btnAddOrder.Size = new System.Drawing.Size(77, 24);
+            this.btnAddOrder.TabIndex = 19;
+            this.btnAddOrder.Text = "HĐ mới";
+            this.btnAddOrder.UseVisualStyleBackColor = true;
+            this.btnAddOrder.Click += new System.EventHandler(this.btnAddOrder_Click);
+            // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(310, 17);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(77, 24);
             this.btnSave.TabIndex = 18;
-            this.btnSave.Text = "Ghi";
+            this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnNew
             // 
@@ -431,6 +468,7 @@
             this.btnNew.TabIndex = 16;
             this.btnNew.Text = "Thêm SP";
             this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // frmOrder
             // 
@@ -443,6 +481,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmOrder";
             this.Size = new System.Drawing.Size(800, 545);
+            this.Load += new System.EventHandler(this.frmOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dGVOrder)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -460,7 +499,7 @@
 
         #endregion
         private System.Windows.Forms.ComboBox cmbCustomerFilter;
-        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.TextBox txtCustomerSearch;
         private System.Windows.Forms.DataGridView dGVOrder;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -472,19 +511,18 @@
         private System.Windows.Forms.DataGridView dGVProduct;
         private System.Windows.Forms.Button btnProductSearch;
         private System.Windows.Forms.ComboBox cmbProductFilter;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtProductSearch;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button btnRemoveProduct;
+        private System.Windows.Forms.Button btnAddProduct;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnNew;
-        private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtCustomerName;
+        private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dateDate;
+        private System.Windows.Forms.DateTimePicker dateOrderDate;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Label label8;
@@ -494,5 +532,8 @@
         private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnAddOrder;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbDiscount;
     }
 }

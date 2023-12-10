@@ -38,9 +38,9 @@
             this.btnLogOut = new System.Windows.Forms.Button();
             this.btnStatic = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelChildForm = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -83,6 +83,7 @@
             this.btnCustomer.TabIndex = 5;
             this.btnCustomer.Text = "Khách hàng";
             this.btnCustomer.UseVisualStyleBackColor = true;
+            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
             // 
             // btnOrder
             // 
@@ -92,6 +93,7 @@
             this.btnOrder.TabIndex = 4;
             this.btnOrder.Text = "Hóa đơn";
             this.btnOrder.UseVisualStyleBackColor = true;
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
             // 
             // btnImport
             // 
@@ -101,6 +103,7 @@
             this.btnImport.TabIndex = 3;
             this.btnImport.Text = "Nhập hàng";
             this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // groupBox1
             // 
@@ -139,6 +142,7 @@
             this.btnStatic.TabIndex = 6;
             this.btnStatic.Text = "Thống kê";
             this.btnStatic.UseVisualStyleBackColor = true;
+            this.btnStatic.Click += new System.EventHandler(this.btnStatic_Click);
             // 
             // groupBox3
             // 
@@ -151,6 +155,18 @@
             this.groupBox3.Size = new System.Drawing.Size(1029, 60);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(916, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Nhân viên";
             // 
             // label1
             // 
@@ -174,18 +190,6 @@
             this.panelChildForm.Name = "panelChildForm";
             this.panelChildForm.Size = new System.Drawing.Size(800, 537);
             this.panelChildForm.TabIndex = 9;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(916, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Nhân viên";
             // 
             // Main
             // 
