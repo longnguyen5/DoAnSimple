@@ -128,8 +128,31 @@ namespace DoAnSimple
         {
             // Thêm sản phẩm ở chi tiết hóa đơn
             SetControls(true);
-            txtCustomerName.Clear();
-            txtPhone.Clear();
+            // 1. Kiem tra du lieu
+            if (txtCustomerName.Text.Trim() == "")
+            {
+                MessageBox.Show("Đề nghị nhập tên khách hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtCustomerName.Focus();
+                return;
+            }
+            if (txtPhone.Text.Trim() == "")
+            {
+                MessageBox.Show("Đề nghị nhập số điện thoại khách hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtPhone.Focus();
+                return;
+            }
+            if (txtQuantity.Text.Trim() == "")
+            {
+                MessageBox.Show("Đề nghị nhập số lượng sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtQuantity.Focus();
+                return;
+            }
+
+            // Thêm dữ liệu vào dGVOrder
+
+
+
+            // Xóa textbox để nhập sản phẩm tiếp theo
             txtCustomerName.Focus();
             txtProductName.Clear();
             txtQuantity.Clear();
@@ -137,20 +160,7 @@ namespace DoAnSimple
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // Thêm mới
-            // 1. Insert 
-            string customerIDQuery = "SELECT [Id] FROM [Customer] WHERE [Name] LIKE N'%' + @CustomerName + '%'";
-            string drugIDQuery = "SELECT [Id] FROM Drugs WHERE [Name] LIKE N'%' + @DrugName + '%'";
-            // Insert vào bảng Order một đơn hàng và nhận lại ID của đơn đặt hàng vừa tạo
-            string ordersSql = "INSERT INTO [Order] (OrderDate, TotalPrice) OUTPUT INSERTED.Id VALUES (@OrderDate, @TotalPrice);";
-            // Lấy CustomerID
-            string customerID = myDataServices.ExecuteScalar(customerIDQuery, new SqlParameter("@CustomerName", txtCustomerName.Text.Trim())).ToString();
-
-
-
-
-
-
+            //
         }
 
         private void btnExport_Click(object sender, EventArgs e)
@@ -241,7 +251,8 @@ namespace DoAnSimple
         private void DisplayOrder()
         {
             //string sSql = "Select top 0 Drugs.DrugID, Drugs.DrugName, Drugs.Price, Quantity from Drugs, OrderDetails where Drugs.DrugID = OrderDetails.DrugID";
-            string sSql = "Select TOP 0 p.Id, p.Name, p.Price, p.Quantity from [Product] p";
+            string sSql = "Select TOP 1 p.Id, p.Name, p.Price, p.Quantity, d.name as Discount, od.Cost " +
+                "from [Product] p join order_details od on p.id = od.productId join discount d on d.id = od.discountId";
             DataTable dtOrder = myDataServices.RunQuery(sSql);
             dGVOrder.DataSource = dtOrder;
         }
@@ -266,13 +277,17 @@ namespace DoAnSimple
 
         private void dGVCustomer_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
+            // Đưa thông tin khách hàng sang các textbox
             txtCustomerName.Text = dGVCustomer.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtPhone.Text = dGVCustomer.Rows[e.RowIndex].Cells[4].Value.ToString();
         }
 
         private void dGVProduct_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
+            // đưa tên sản phẩm sang textbox
             txtProductName.Text = dGVProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
         }
+
+
     }
 }
