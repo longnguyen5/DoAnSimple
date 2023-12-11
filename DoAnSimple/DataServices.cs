@@ -92,10 +92,26 @@ namespace DrugStoreManagement
                 MessageBox.Show(ex.Message, "Error " + ex.Number.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        internal int ExecuteScalar(string ordersSql, object ordersParameters)
+        internal int ExecuteScalar(string sql, params SqlParameter[] parameters)
         {
-            throw new NotImplementedException();
+            using (SqlCommand command = new SqlCommand(sql, mySqlConnection))
+            {
+
+                if (parameters != null && parameters.Length > 0)
+                {
+                    command.Parameters.AddRange(parameters);
+                }
+
+                object result = command.ExecuteScalar();
+
+                if (result != null)
+                {
+                    return Convert.ToInt32(result);
+                }
+
+                return -1; // Hoặc một giá trị khác để biểu thị rằng không có giá trị trả về.
+            }
         }
     }
-
 }
+

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,8 @@ namespace DoAnSimple
     {
         //1. khai báo đối tượng DataServices
         private DataServices myDataServices;
-        //2. khai báo datatable để lưu bảng Import
-        private DataTable dtImport;
+        //2. khai báo datatable để lưu bảng Order
+        private DataTable dtOrder;
         // 3. khai báo biến kiểm tra đã chọn <thêm mới>
         private bool modeNew;
         public frmOrder()
@@ -111,7 +112,7 @@ namespace DoAnSimple
                 dGVOrder.DataSource = dtOrder;
             }
         }
-
+        private int orderId;
         private void btnAddOrder_Click(object sender, EventArgs e)
         {
             // Tạo hóa đơn
@@ -122,50 +123,155 @@ namespace DoAnSimple
             txtCustomerName.Focus();
             txtProductName.Clear();
             txtQuantity.Clear();
+
+            int r = dGVCustomer.CurrentRow.Index;
+            string CustomerId = dGVCustomer.Rows[r].Cells["Id"].Value.ToString();
+            string OrderDate = DateTime.Now.ToString();
+
+            string sSql = "INSERT INTO [Order] (CustomerId, Date) VALUES (@CustomerId, @OrderDate); SELECT SCOPE_IDENTITY();";
+            orderId = (int)myDataServices.ExecuteScalar(sSql, new SqlParameter("@CustomerId", CustomerId), new SqlParameter("@OrderDate", OrderDate));
         }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            // Thêm sản phẩm ở chi tiết hóa đơn
             SetControls(true);
-            // 1. Kiem tra du lieu
-            if (txtCustomerName.Text.Trim() == "")
+
+            // Kiểm tra xem có giá trị trong txtProductId không
+            if (!string.IsNullOrEmpty(txtProductId.Text))
             {
-                MessageBox.Show("Đề nghị nhập tên khách hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtCustomerName.Focus();
-                return;
+                // Kiểm tra xem dtOrder đã được khởi tạo hay chưa
+                if (dtOrder == null)
+                {
+                    // Nếu chưa, tạo một DataTable mới
+                    dtOrder = new DataTable();
+
+                    // Thêm các cột vào DataTable
+                    dtOrder.Columns.Add("Id");
+                    dtOrder.Columns.Add("Name");
+                    dtOrder.Columns.Add("Quantity");
+                    dtOrder.Columns.Add("Discount");
+                }
+
+                // Lấy giá trị của Id từ TextBox
+                int productId = Convert.ToInt32(txtProductId.Text);
+
+                // Tạo một dòng mới trong DataTable và thêm vào dữ liệu
+                DataRow dataRow = dtOrder.NewRow();
+                dataRow["Id"] = productId;
+                dataRow["Name"] = txtProductName.Text; // Đã thêm .Text để lấy giá trị từ TextBox
+                dataRow["Quantity"] = txtQuantity.Text; // Đã thêm .Text để lấy giá trị từ TextBox
+                dataRow["Discount"] = cmbDiscount.SelectedValue?.ToString(); // Kiểm tra null để tránh lỗi
+                dtOrder.Rows.Add(dataRow);
+
+                // Cập nhật nguồn dữ liệu cho DataGridView của hóa đơn
+                dGVOrder.DataSource = dtOrder;
             }
-            if (txtPhone.Text.Trim() == "")
+            else
             {
-                MessageBox.Show("Đề nghị nhập số điện thoại khách hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtPhone.Focus();
-                return;
+                MessageBox.Show("Vui lòng chọn một sản phẩm từ danh sách.");
             }
-            if (txtQuantity.Text.Trim() == "")
-            {
-                MessageBox.Show("Đề nghị nhập số lượng sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtQuantity.Focus();
-                return;
-            }
-
-            // Thêm dữ liệu vào dGVOrder
-
-
-
-            // Xóa textbox để nhập sản phẩm tiếp theo
-            txtCustomerName.Focus();
-            txtProductName.Clear();
-            txtQuantity.Clear();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //
+            // Kiểm tra xem có dữ liệu để lưu không
+            if (dGVOrder.Rows.Count > 0)
+            {
+                // Duyệt qua từng dòng trong dGVOrder
+                foreach (DataGridViewRow row in dGVOrder.Rows)
+                {
+                    // Lấy thông tin từ mỗi dòng
+                    int productId = Convert.ToInt32(row.Cells["Id"].Value);
+                    int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
+                    string discount = row.Cells["Discount"].Value.ToString();
+
+                    // Thực hiện lệnh SQL để cập nhật cơ sở dữ liệu
+                    string sql = "INSERT INTO Order_details (Id, ProductId, Quantity, DiscountId) VALUES (@OrderId, @ProductId, @Quantity, @Discount)";
+
+                    // Thực hiện ExecuteNonQuery để thực hiện lệnh SQL
+                    myDataServices.ExecuteNonQuery(sql,
+                        new SqlParameter("@OrderId", orderId),
+                        new SqlParameter("@ProductId", productId),
+                        new SqlParameter("@Quantity", quantity),
+                        new SqlParameter("@Discount", discount)
+                    );
+
+                    // Lấy giá trị tổng tiền từ bảng Order
+                    string totalSql = "SELECT Total FROM [Order] WHERE Id = @OrderId";
+                    float total = Convert.ToSingle(myDataServices.ExecuteScalar(totalSql, new SqlParameter("@OrderId", orderId)));
+
+                    // Hiển thị giá trị tổng tiền trong TextBox
+                    txtTotal.Text = total.ToString();
+                }
+
+                MessageBox.Show("Đã lưu thành công vào cơ sở dữ liệu.");
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu để lưu.");
+            }
         }
 
         private void btnExport_Click(object sender, EventArgs e)
         {
+            // Tạo nội dung hóa đơn
+            string invoiceContent = GenerateInvoiceContent(orderId);
 
+            // Hiển thị hộp thoại để chọn vị trí lưu tệp
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog.Title = "Chọn vị trí để lưu hóa đơn";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Lưu hóa đơn vào tệp tin văn bản
+                File.WriteAllText(saveFileDialog.FileName, invoiceContent);
+                MessageBox.Show("Hóa đơn đã được xuất thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private DataTable GetInvoiceDetails(int orderId)
+        {
+            // Thực hiện truy vấn SQL để lấy chi tiết hóa đơn (sản phẩm) cho một hóa đơn cụ thể
+            string sSql = "SELECT p.Name AS ProductName, od.Quantity, od.Cost " +
+                          "FROM Order_details od " +
+                          "INNER JOIN Product p ON od.ProductId = p.Id " +
+                          "WHERE od.Id = @OrderId";
+
+            // Thực hiện truy vấn và trả về DataTable chứa chi tiết hóa đơn
+            DataTable dtInvoiceDetails = myDataServices.RunQuery(sSql, new SqlParameter("@OrderId", orderId));
+
+            return dtInvoiceDetails;
+        }
+        private string GenerateInvoiceContent(int orderId)
+        {
+            // Lấy ngày hôm nay
+            string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
+
+            // Tạo nội dung hóa đơn
+            string invoiceContent = $"HÓA ĐƠN\nNgày: {currentDate}\n";
+
+            // Lấy thông tin khách hàng
+            invoiceContent += "Khách hàng: " + txtCustomerName.Text + "\n";
+            invoiceContent += "Số điện thoại: " + txtPhone.Text + "\n";
+
+            // Lấy chi tiết hóa đơn (sản phẩm)
+            DataTable dtInvoiceDetails = GetInvoiceDetails(orderId);
+
+            // Thêm thông tin sản phẩm vào nội dung hóa đơn
+            foreach (DataRow row in dtInvoiceDetails.Rows)
+            {
+                string productName = row["ProductName"].ToString();
+                int quantity = Convert.ToInt32(row["Quantity"]);
+                decimal cost = Convert.ToDecimal(row["Cost"]);
+
+                invoiceContent += $"{productName}\t{quantity}\t{cost:F2}VND\n";
+            }
+
+            // Tính tổng cộng
+            decimal total = dtInvoiceDetails.AsEnumerable().Sum(row => Convert.ToDecimal(row["Cost"]));
+            invoiceContent += $"Tổng cộng: {total:F2}VND";
+
+            return invoiceContent;
         }
 
         private void btnProductSearch_Click(object sender, EventArgs e)
@@ -210,12 +316,12 @@ namespace DoAnSimple
                 MessageBox.Show("Lỗi kết nối với cơ sở dữ liệu.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            // Chuyển dữ liệu vào cmbCategory
+            // Chuyển dữ liệu vào cmbDiscount
             string sSql = "Select * From [Discount] Order By [Name];";
             DataTable dtDiscount = myDataServices.RunQuery(sSql);
-            cmbDiscount.DataSource = dtDiscount;
-            cmbDiscount.DisplayMember = "Name";
             cmbDiscount.ValueMember = "Id";
+            cmbDiscount.DisplayMember = "Name";
+            cmbDiscount.DataSource = dtDiscount;
             // cmbCustomerFilter
             cmbCustomerFilter.Items.Add("Tìm theo tên");
             cmbCustomerFilter.Items.Add("Tìm theo mã");
@@ -250,10 +356,14 @@ namespace DoAnSimple
         }
         private void DisplayOrder()
         {
-            //string sSql = "Select top 0 Drugs.DrugID, Drugs.DrugName, Drugs.Price, Quantity from Drugs, OrderDetails where Drugs.DrugID = OrderDetails.DrugID";
-            string sSql = "Select TOP 1 p.Id, p.Name, p.Price, p.Quantity, d.name as Discount, od.Cost " +
-                "from [Product] p join order_details od on p.id = od.productId join discount d on d.id = od.discountId";
-            DataTable dtOrder = myDataServices.RunQuery(sSql);
+            // Thiết lập cấu trúc DataTable cho dữ liệu đặt hàng
+            DataTable dtOrder = new DataTable();
+            dtOrder.Columns.Add("Id");
+            dtOrder.Columns.Add("Name");
+            dtOrder.Columns.Add("Quantity");
+            dtOrder.Columns.Add("Discount");
+
+            // Gán DataTable cho DataGridView dGVOrder
             dGVOrder.DataSource = dtOrder;
         }
         private void SetControls(bool edit)
@@ -264,7 +374,6 @@ namespace DoAnSimple
             txtQuantity.Enabled = edit;
             txtProductName.Enabled = edit;
             txtTotal.Enabled = edit;
-            dateOrderDate.Enabled = edit;
             cmbDiscount.Enabled = edit;
             //các nút
             btnAddOrder.Enabled = !edit;
@@ -286,6 +395,7 @@ namespace DoAnSimple
         {
             // đưa tên sản phẩm sang textbox
             txtProductName.Text = dGVProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtProductId.Text = dGVProduct.Rows[e.RowIndex].Cells[0].Value.ToString();
         }
 
 
