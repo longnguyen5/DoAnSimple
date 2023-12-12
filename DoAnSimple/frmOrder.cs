@@ -17,7 +17,7 @@ namespace DoAnSimple
     {
         //1. khai báo đối tượng DataServices
         private DataServices myDataServices;
-        //2. khai báo datatable để lưu bảng Order
+        //2. khai báo datatable để lưu bảng Order_details
         private DataTable dtOrder;
         // 3. khai báo biến kiểm tra đã chọn <thêm mới>
         private bool modeNew;
@@ -210,6 +210,7 @@ namespace DoAnSimple
             {
                 MessageBox.Show("Không có dữ liệu để lưu.");
             }
+            SetControls(false);
         }
 
         private void btnExport_Click(object sender, EventArgs e)

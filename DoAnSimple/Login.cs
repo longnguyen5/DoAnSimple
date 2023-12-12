@@ -48,14 +48,17 @@ namespace DoAnSimple
             if (acctype == 0) // Nhân viên
             {
                 Main frm = new Main();
+                this.Hide();
                 frm.ShowDialog();
+                this.Close();
             }
             else // Quản lý
             {
                 ManagerMain frm = new ManagerMain();
+                this.Hide();
                 frm.ShowDialog();
+                this.Close();
             }
-            this.Hide();
         }
     }
 }

@@ -81,5 +81,13 @@ namespace DoAnSimple
         {
             openChildControl(new frmStatic());
         }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            Form loginForm = new Login();
+            this.Hide();
+            loginForm.ShowDialog();
+            this.Close();
+        }
     }
 }

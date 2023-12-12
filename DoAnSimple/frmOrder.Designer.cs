@@ -31,6 +31,8 @@
             this.cmbCustomerFilter = new System.Windows.Forms.ComboBox();
             this.txtCustomerSearch = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtProductId = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.dGVOrder = new System.Windows.Forms.DataGridView();
             this.cmbDiscount = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -64,8 +66,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtCustomerName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtProductId = new System.Windows.Forms.TextBox();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVOrder)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -111,6 +111,22 @@
             this.groupBox4.TabIndex = 13;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Chi tiết hóa đơn";
+            // 
+            // txtProductId
+            // 
+            this.txtProductId.Location = new System.Drawing.Point(138, 23);
+            this.txtProductId.Name = "txtProductId";
+            this.txtProductId.Size = new System.Drawing.Size(92, 22);
+            this.txtProductId.TabIndex = 30;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(15, 28);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(91, 16);
+            this.label7.TabIndex = 29;
+            this.label7.Text = "Mã sản phẩm:";
             // 
             // dGVOrder
             // 
@@ -463,22 +479,6 @@
             this.label4.Size = new System.Drawing.Size(106, 16);
             this.label4.TabIndex = 29;
             this.label4.Text = "Tên khách hàng:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 28);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(91, 16);
-            this.label7.TabIndex = 29;
-            this.label7.Text = "Mã sản phẩm:";
-            // 
-            // txtProductId
-            // 
-            this.txtProductId.Location = new System.Drawing.Point(138, 23);
-            this.txtProductId.Name = "txtProductId";
-            this.txtProductId.Size = new System.Drawing.Size(92, 22);
-            this.txtProductId.TabIndex = 30;
             // 
             // frmOrder
             // 

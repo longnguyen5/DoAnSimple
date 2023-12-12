@@ -95,12 +95,6 @@
     <Compile Include="frmStatic.Designer.cs">
       <DependentUpon>frmStatic.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmStore.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="frmStore.Designer.cs">
-      <DependentUpon>frmStore.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmSupplier.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -132,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCustomer.resx">
       <DependentUpon>frmCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmployee.resx">
+      <DependentUpon>frmEmployee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmImport.resx">
       <DependentUpon>frmImport.cs</DependentUpon>

@@ -215,7 +215,7 @@ namespace DoAnSimple
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string sSql = "Select * from Drugs WHERE DrugName LIKE '%' + @DrugName + '%'";
+            string sSql = "Select * from Product WHERE Name LIKE '%' + @DrugName + '%'";
             DisplaySearch(sSql, new SqlParameter("@DrugName", txtSearch.Text.Trim()));
         }
         private void DisplaySearch(string sSql, params SqlParameter[] parameters)

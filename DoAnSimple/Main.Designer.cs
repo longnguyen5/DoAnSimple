@@ -133,6 +133,7 @@
             this.btnLogOut.TabIndex = 7;
             this.btnLogOut.Text = "Đăng xuất";
             this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // btnStatic
             // 

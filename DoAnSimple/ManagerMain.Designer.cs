@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnProduct = new System.Windows.Forms.Button();
             this.btnCustomer = new System.Windows.Forms.Button();
@@ -40,10 +41,8 @@
             this.btnLogOut = new System.Windows.Forms.Button();
             this.btnStatic = new System.Windows.Forms.Button();
             this.panelChildForm = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -61,6 +60,18 @@
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(950, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 20);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Quản lý";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -72,6 +83,7 @@
             this.label1.Size = new System.Drawing.Size(87, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "Zin Mart";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnProduct
             // 
@@ -81,6 +93,7 @@
             this.btnProduct.TabIndex = 0;
             this.btnProduct.Text = "Sản phẩm";
             this.btnProduct.UseVisualStyleBackColor = true;
+            this.btnProduct.Click += new System.EventHandler(this.btnProduct_Click);
             // 
             // btnCustomer
             // 
@@ -90,6 +103,7 @@
             this.btnCustomer.TabIndex = 5;
             this.btnCustomer.Text = "Khách hàng";
             this.btnCustomer.UseVisualStyleBackColor = true;
+            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
             // 
             // btnCategory
             // 
@@ -99,6 +113,7 @@
             this.btnCategory.TabIndex = 1;
             this.btnCategory.Text = "Loại sản phẩm";
             this.btnCategory.UseVisualStyleBackColor = true;
+            this.btnCategory.Click += new System.EventHandler(this.btnCategory_Click);
             // 
             // btnOrder
             // 
@@ -108,6 +123,7 @@
             this.btnOrder.TabIndex = 4;
             this.btnOrder.Text = "Hóa đơn";
             this.btnOrder.UseVisualStyleBackColor = true;
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
             // 
             // btnSupplier
             // 
@@ -117,6 +133,7 @@
             this.btnSupplier.TabIndex = 2;
             this.btnSupplier.Text = "Nhà cung cấp";
             this.btnSupplier.UseVisualStyleBackColor = true;
+            this.btnSupplier.Click += new System.EventHandler(this.btnSupplier_Click);
             // 
             // btnImport
             // 
@@ -126,6 +143,7 @@
             this.btnImport.TabIndex = 3;
             this.btnImport.Text = "Nhập hàng";
             this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // groupBox1
             // 
@@ -155,6 +173,7 @@
             this.btnLogOut.TabIndex = 7;
             this.btnLogOut.Text = "Đăng xuất";
             this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // btnStatic
             // 
@@ -164,6 +183,7 @@
             this.btnStatic.TabIndex = 6;
             this.btnStatic.Text = "Thống kê";
             this.btnStatic.UseVisualStyleBackColor = true;
+            this.btnStatic.Click += new System.EventHandler(this.btnStatic_Click);
             // 
             // panelChildForm
             // 
@@ -175,21 +195,8 @@
             this.panelChildForm.Size = new System.Drawing.Size(800, 537);
             this.panelChildForm.TabIndex = 12;
             // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(950, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Quản lý";
-            // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Location = new System.Drawing.Point(15, 79);
             this.groupBox2.Name = "groupBox2";
@@ -206,15 +213,7 @@
             this.button1.TabIndex = 8;
             this.button1.Text = "Nhân viên";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(19, 66);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(177, 39);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Cửa hàng";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ManagerMain
             // 
@@ -251,7 +250,6 @@
         private System.Windows.Forms.Button btnStatic;
         private System.Windows.Forms.Panel panelChildForm;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
     }
 }
