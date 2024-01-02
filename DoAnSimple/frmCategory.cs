@@ -63,6 +63,10 @@ namespace DoAnSimple
             // From now on, do not change the context of myDataService() - do not use it for other tables
             // Hiển thị lên grid
             dGVCategory.DataSource = dtCategory;
+            foreach (DataGridViewColumn column in dGVCategory.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
         private void SetControls(bool edit)
         {
@@ -128,10 +132,6 @@ namespace DoAnSimple
                 return;
             }
 
-
-
-
-
             string sSql;
             // 2. Kiểm tra có trùng tên sản phẩm hay không
             if (modeNew || (!modeNew && txtName.Text.Trim() != oldCategoryName.Trim()))
@@ -195,6 +195,10 @@ namespace DoAnSimple
             //6. đóng kết nối và myDataReader
             myDataReader.Close();
             mySqlConnection.Close();
+            foreach (DataGridViewColumn column in dGVCategory.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
     }
 }

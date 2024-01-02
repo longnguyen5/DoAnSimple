@@ -69,12 +69,20 @@ namespace DoAnSimple
             string sSql = "Select * from [Supplier]";
             DataTable dtSupplier = myDataServices.RunQuery(sSql);
             dGVSupplier.DataSource = dtSupplier;
+            foreach (DataGridViewColumn column in dGVSupplier.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
         private void DisplayProduct()
         {
             string sSql = "Select * from [Product]";
             DataTable dtProduct = myDataServices.RunQuery(sSql);
             dGVProduct.DataSource = dtProduct;
+            foreach (DataGridViewColumn column in dGVProduct.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
 
         private void btnSupplierSearch_Click(object sender, EventArgs e)

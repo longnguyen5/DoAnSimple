@@ -30,7 +30,7 @@ namespace DoAnSimple
             {
                 return;
             }
-            int acctype, id;
+            int acctype;
             // truy vấn bảng User
             string sSql = "Select * from [User] Where Username = @uname AND Password = @pword";
             DataTable dt = myDataServices.RunQuery(sSql, new SqlParameter("@uname", txtUsername.Text), new SqlParameter("@pword", txtPassword.Text));

@@ -348,12 +348,20 @@ namespace DoAnSimple
             string sSql = "Select * from [Customer]";
             DataTable dtOrder = myDataServices.RunQuery(sSql);
             dGVCustomer.DataSource = dtOrder;
+            foreach (DataGridViewColumn column in dGVCustomer.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
         private void DisplayProduct()
         {
             string sSql = "Select * from [Product]";
             DataTable dtOrder = myDataServices.RunQuery(sSql);
             dGVProduct.DataSource = dtOrder;
+            foreach (DataGridViewColumn column in dGVProduct.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
         private void DisplayOrder()
         {
@@ -398,7 +406,5 @@ namespace DoAnSimple
             txtProductName.Text = dGVProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtProductId.Text = dGVProduct.Rows[e.RowIndex].Cells[0].Value.ToString();
         }
-
-
     }
 }

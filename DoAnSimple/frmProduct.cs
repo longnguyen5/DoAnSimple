@@ -79,6 +79,10 @@ namespace DoAnSimple
             // From now on, do not change the context of myDataService() - do not use it for other tables
             // Hiển thị lên grid
             dGVProduct.DataSource = dtProduct;
+            foreach (DataGridViewColumn column in dGVProduct.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
         private void SetControls(bool edit)
         {

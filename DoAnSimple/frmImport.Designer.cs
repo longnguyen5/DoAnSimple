@@ -81,9 +81,9 @@
             this.groupBox2.Controls.Add(this.cmbProductFilter);
             this.groupBox2.Controls.Add(this.txtProductSearch);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(17, 291);
+            this.groupBox2.Location = new System.Drawing.Point(15, 398);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(367, 240);
+            this.groupBox2.Size = new System.Drawing.Size(626, 320);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Sản phẩm";
@@ -96,21 +96,22 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dGVProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGVProduct.Location = new System.Drawing.Point(9, 79);
+            this.dGVProduct.Location = new System.Drawing.Point(9, 89);
             this.dGVProduct.MultiSelect = false;
             this.dGVProduct.Name = "dGVProduct";
             this.dGVProduct.ReadOnly = true;
             this.dGVProduct.RowHeadersWidth = 51;
             this.dGVProduct.RowTemplate.Height = 24;
-            this.dGVProduct.Size = new System.Drawing.Size(350, 155);
+            this.dGVProduct.Size = new System.Drawing.Size(609, 224);
             this.dGVProduct.TabIndex = 1;
             this.dGVProduct.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVProduct_RowEnter);
             // 
             // btnProductSearch
             // 
-            this.btnProductSearch.Location = new System.Drawing.Point(270, 20);
+            this.btnProductSearch.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProductSearch.Location = new System.Drawing.Point(467, 22);
             this.btnProductSearch.Name = "btnProductSearch";
-            this.btnProductSearch.Size = new System.Drawing.Size(89, 24);
+            this.btnProductSearch.Size = new System.Drawing.Size(89, 30);
             this.btnProductSearch.TabIndex = 13;
             this.btnProductSearch.Text = "Tìm";
             this.btnProductSearch.UseVisualStyleBackColor = true;
@@ -118,57 +119,64 @@
             // 
             // cmbProductFilter
             // 
+            this.cmbProductFilter.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProductFilter.FormattingEnabled = true;
-            this.cmbProductFilter.Location = new System.Drawing.Point(194, 49);
+            this.cmbProductFilter.Location = new System.Drawing.Point(391, 55);
             this.cmbProductFilter.Name = "cmbProductFilter";
-            this.cmbProductFilter.Size = new System.Drawing.Size(165, 24);
+            this.cmbProductFilter.Size = new System.Drawing.Size(165, 26);
             this.cmbProductFilter.TabIndex = 1;
             // 
             // txtProductSearch
             // 
-            this.txtProductSearch.Location = new System.Drawing.Point(10, 21);
+            this.txtProductSearch.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductSearch.Location = new System.Drawing.Point(75, 24);
             this.txtProductSearch.Name = "txtProductSearch";
-            this.txtProductSearch.Size = new System.Drawing.Size(255, 22);
+            this.txtProductSearch.Size = new System.Drawing.Size(386, 26);
             this.txtProductSearch.TabIndex = 8;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(96, 53);
+            this.label2.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(293, 60);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 16);
+            this.label2.Size = new System.Drawing.Size(95, 18);
             this.label2.TabIndex = 3;
             this.label2.Text = "Tìm kiếm theo:";
             // 
             // txtQuantity
             // 
-            this.txtQuantity.Location = new System.Drawing.Point(142, 135);
+            this.txtQuantity.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQuantity.Location = new System.Drawing.Point(155, 149);
             this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(73, 22);
+            this.txtQuantity.Size = new System.Drawing.Size(73, 26);
             this.txtQuantity.TabIndex = 26;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(15, 138);
+            this.label11.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(16, 155);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(79, 16);
+            this.label11.Size = new System.Drawing.Size(85, 18);
             this.label11.TabIndex = 25;
             this.label11.Text = "Số lượng (*):";
             // 
             // txtProductName
             // 
-            this.txtProductName.Location = new System.Drawing.Point(142, 107);
+            this.txtProductName.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductName.Location = new System.Drawing.Point(155, 117);
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(245, 22);
+            this.txtProductName.Size = new System.Drawing.Size(245, 26);
             this.txtProductName.TabIndex = 24;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(15, 110);
+            this.label10.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(16, 120);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(112, 16);
+            this.label10.Size = new System.Drawing.Size(112, 18);
             this.label10.TabIndex = 23;
             this.label10.Text = "Tên sản phẩm (*):";
             // 
@@ -176,9 +184,9 @@
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(345, 397);
+            this.label9.Location = new System.Drawing.Point(529, 548);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(38, 16);
+            this.label9.Size = new System.Drawing.Size(38, 18);
             this.label9.TabIndex = 22;
             this.label9.Text = "đồng";
             // 
@@ -186,10 +194,11 @@
             // 
             this.txtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTotal.Enabled = false;
-            this.txtTotal.Location = new System.Drawing.Point(227, 394);
+            this.txtTotal.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal.Location = new System.Drawing.Point(411, 544);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtTotal.Size = new System.Drawing.Size(116, 22);
+            this.txtTotal.Size = new System.Drawing.Size(116, 26);
             this.txtTotal.TabIndex = 21;
             this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -197,25 +206,27 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(155, 398);
+            this.label8.Location = new System.Drawing.Point(339, 549);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(66, 16);
+            this.label8.Size = new System.Drawing.Size(66, 18);
             this.label8.TabIndex = 20;
             this.label8.Text = "Tổng tiền:";
             // 
             // txtSupplierName
             // 
             this.txtSupplierName.Enabled = false;
-            this.txtSupplierName.Location = new System.Drawing.Point(142, 19);
+            this.txtSupplierName.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupplierName.Location = new System.Drawing.Point(155, 21);
             this.txtSupplierName.Name = "txtSupplierName";
-            this.txtSupplierName.Size = new System.Drawing.Size(245, 22);
+            this.txtSupplierName.Size = new System.Drawing.Size(245, 26);
             this.txtSupplierName.TabIndex = 15;
             // 
             // txtContact
             // 
-            this.txtContact.Location = new System.Drawing.Point(142, 50);
+            this.txtContact.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContact.Location = new System.Drawing.Point(155, 53);
             this.txtContact.Name = "txtContact";
-            this.txtContact.Size = new System.Drawing.Size(245, 22);
+            this.txtContact.Size = new System.Drawing.Size(245, 26);
             this.txtContact.TabIndex = 14;
             // 
             // imageList1
@@ -230,18 +241,18 @@
             this.groupBox3.Controls.Add(this.btnAddImport);
             this.groupBox3.Controls.Add(this.btnSave);
             this.groupBox3.Controls.Add(this.btnNew);
-            this.groupBox3.Location = new System.Drawing.Point(390, 484);
+            this.groupBox3.Location = new System.Drawing.Point(657, 645);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(393, 47);
+            this.groupBox3.Size = new System.Drawing.Size(577, 66);
             this.groupBox3.TabIndex = 21;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Chức năng";
             // 
             // btnAddImport
             // 
-            this.btnAddImport.Location = new System.Drawing.Point(6, 17);
+            this.btnAddImport.Location = new System.Drawing.Point(6, 19);
             this.btnAddImport.Name = "btnAddImport";
-            this.btnAddImport.Size = new System.Drawing.Size(139, 24);
+            this.btnAddImport.Size = new System.Drawing.Size(139, 34);
             this.btnAddImport.TabIndex = 19;
             this.btnAddImport.Text = "Tạo đơn nhập";
             this.btnAddImport.UseVisualStyleBackColor = true;
@@ -249,9 +260,9 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(306, 17);
+            this.btnSave.Location = new System.Drawing.Point(478, 19);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(77, 24);
+            this.btnSave.Size = new System.Drawing.Size(88, 34);
             this.btnSave.TabIndex = 18;
             this.btnSave.Text = "Ghi";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -259,9 +270,9 @@
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(223, 17);
+            this.btnNew.Location = new System.Drawing.Point(384, 19);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(77, 24);
+            this.btnNew.Size = new System.Drawing.Size(88, 34);
             this.btnNew.TabIndex = 16;
             this.btnNew.Text = "Thêm mới";
             this.btnNew.UseVisualStyleBackColor = true;
@@ -270,18 +281,20 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 23);
+            this.label6.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(16, 26);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 16);
+            this.label6.Size = new System.Drawing.Size(133, 18);
             this.label6.TabIndex = 13;
             this.label6.Text = "Tên nhà cung cấp (*):";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 54);
+            this.label4.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(16, 56);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 16);
+            this.label4.Size = new System.Drawing.Size(89, 18);
             this.label4.TabIndex = 12;
             this.label4.Text = "Số liên hệ (*):";
             // 
@@ -307,51 +320,56 @@
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.dGVImport);
-            this.groupBox4.Location = new System.Drawing.Point(390, 57);
+            this.groupBox4.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(657, 63);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(393, 422);
+            this.groupBox4.Size = new System.Drawing.Size(577, 576);
             this.groupBox4.TabIndex = 19;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Hóa đơn";
             // 
             // txtProductId
             // 
-            this.txtProductId.Location = new System.Drawing.Point(143, 77);
+            this.txtProductId.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductId.Location = new System.Drawing.Point(155, 85);
             this.txtProductId.Name = "txtProductId";
-            this.txtProductId.Size = new System.Drawing.Size(92, 22);
+            this.txtProductId.Size = new System.Drawing.Size(244, 26);
             this.txtProductId.TabIndex = 32;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(221, 166);
+            this.label7.Location = new System.Drawing.Point(234, 184);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 16);
+            this.label7.Size = new System.Drawing.Size(38, 18);
             this.label7.TabIndex = 32;
             this.label7.Text = "đồng";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(16, 82);
+            this.label14.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(16, 88);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(91, 16);
+            this.label14.Size = new System.Drawing.Size(89, 18);
             this.label14.TabIndex = 31;
             this.label14.Text = "Mã sản phẩm:";
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(142, 163);
+            this.txtPrice.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrice.Location = new System.Drawing.Point(155, 181);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(73, 22);
+            this.txtPrice.Size = new System.Drawing.Size(73, 26);
             this.txtPrice.TabIndex = 31;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(16, 166);
+            this.label13.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(16, 184);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(118, 16);
+            this.label13.Size = new System.Drawing.Size(116, 18);
             this.label13.TabIndex = 30;
             this.label13.Text = "Giá mỗi sản phẩm:";
             // 
@@ -363,13 +381,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dGVImport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGVImport.Location = new System.Drawing.Point(6, 203);
+            this.dGVImport.Location = new System.Drawing.Point(6, 228);
             this.dGVImport.MultiSelect = false;
             this.dGVImport.Name = "dGVImport";
             this.dGVImport.ReadOnly = true;
             this.dGVImport.RowHeadersWidth = 51;
             this.dGVImport.RowTemplate.Height = 24;
-            this.dGVImport.Size = new System.Drawing.Size(381, 185);
+            this.dGVImport.Size = new System.Drawing.Size(565, 310);
             this.dGVImport.TabIndex = 0;
             // 
             // label1
@@ -378,7 +396,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.Location = new System.Drawing.Point(309, 14);
+            this.label1.Location = new System.Drawing.Point(309, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(216, 25);
             this.label1.TabIndex = 17;
@@ -387,32 +405,36 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(96, 53);
+            this.label5.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(293, 57);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(94, 16);
+            this.label5.Size = new System.Drawing.Size(95, 18);
             this.label5.TabIndex = 3;
             this.label5.Text = "Tìm kiếm theo:";
             // 
             // txtSupplierSearch
             // 
-            this.txtSupplierSearch.Location = new System.Drawing.Point(10, 21);
+            this.txtSupplierSearch.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupplierSearch.Location = new System.Drawing.Point(75, 21);
             this.txtSupplierSearch.Name = "txtSupplierSearch";
-            this.txtSupplierSearch.Size = new System.Drawing.Size(255, 22);
+            this.txtSupplierSearch.Size = new System.Drawing.Size(387, 26);
             this.txtSupplierSearch.TabIndex = 8;
             // 
             // cmbSupplierFilter
             // 
+            this.cmbSupplierFilter.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSupplierFilter.FormattingEnabled = true;
-            this.cmbSupplierFilter.Location = new System.Drawing.Point(194, 49);
+            this.cmbSupplierFilter.Location = new System.Drawing.Point(391, 53);
             this.cmbSupplierFilter.Name = "cmbSupplierFilter";
-            this.cmbSupplierFilter.Size = new System.Drawing.Size(165, 24);
+            this.cmbSupplierFilter.Size = new System.Drawing.Size(165, 26);
             this.cmbSupplierFilter.TabIndex = 1;
             // 
             // btnSupplierSearch
             // 
-            this.btnSupplierSearch.Location = new System.Drawing.Point(270, 20);
+            this.btnSupplierSearch.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSupplierSearch.Location = new System.Drawing.Point(467, 20);
             this.btnSupplierSearch.Name = "btnSupplierSearch";
-            this.btnSupplierSearch.Size = new System.Drawing.Size(89, 24);
+            this.btnSupplierSearch.Size = new System.Drawing.Size(89, 30);
             this.btnSupplierSearch.TabIndex = 13;
             this.btnSupplierSearch.Text = "Tìm";
             this.btnSupplierSearch.UseVisualStyleBackColor = true;
@@ -426,13 +448,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dGVSupplier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGVSupplier.Location = new System.Drawing.Point(9, 79);
+            this.dGVSupplier.Location = new System.Drawing.Point(9, 89);
             this.dGVSupplier.MultiSelect = false;
             this.dGVSupplier.Name = "dGVSupplier";
             this.dGVSupplier.ReadOnly = true;
             this.dGVSupplier.RowHeadersWidth = 51;
             this.dGVSupplier.RowTemplate.Height = 24;
-            this.dGVSupplier.Size = new System.Drawing.Size(350, 143);
+            this.dGVSupplier.Size = new System.Drawing.Size(609, 210);
             this.dGVSupplier.TabIndex = 1;
             this.dGVSupplier.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVSupplier_RowEnter);
             // 
@@ -443,24 +465,25 @@
             this.groupBox1.Controls.Add(this.cmbSupplierFilter);
             this.groupBox1.Controls.Add(this.txtSupplierSearch);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Location = new System.Drawing.Point(17, 57);
+            this.groupBox1.Location = new System.Drawing.Point(15, 63);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(367, 228);
+            this.groupBox1.Size = new System.Drawing.Size(626, 306);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nhà cung cấp";
             // 
             // frmImport
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label1);
+            this.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmImport";
-            this.Size = new System.Drawing.Size(800, 545);
+            this.Size = new System.Drawing.Size(1254, 782);
             this.Load += new System.EventHandler(this.frmImport_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

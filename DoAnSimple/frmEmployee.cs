@@ -87,7 +87,7 @@ namespace DoAnSimple
             txtUserName.Text = dGVProduct.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtPassword.Text = dGVProduct.Rows[e.RowIndex].Cells[3].Value.ToString();
             txtEmail.Text = dGVProduct.Rows[e.RowIndex].Cells[5].Value.ToString();
-            txtDescription.Text = dGVProduct.Rows[e.RowIndex].Cells[6].Value.ToString();
+            txtDescription.Text = dGVProduct.Rows[e.RowIndex].Cells[7].Value.ToString();
         }
         private void SetControls(bool edit)
         {
@@ -99,6 +99,8 @@ namespace DoAnSimple
             txtPassword.Enabled = edit;
             txtUserName.Enabled = edit;
             txtPhone.Enabled = edit;
+            cmbStatus.Enabled = edit;
+            cmbUserType.Enabled = edit;
             // Các nút
             btnAdd.Enabled = !edit;
             btnEdit.Enabled = !edit;

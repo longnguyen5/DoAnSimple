@@ -34,6 +34,7 @@ namespace DoAnSimple
                 string sSql = "select * from YearlyProductSalesView";
                 dtSale = myDataServices.RunQuery(sSql);
                 dGVProductOut.DataSource = dtSale;
+
                 sSql = "select * from YearlyProductQuantityView";
                 dtImport = myDataServices.RunQuery(sSql);
                 dGVProductIn.DataSource = dtImport;
@@ -221,7 +222,7 @@ namespace DoAnSimple
                 try
                 {
                     sSql = "SELECT ISNULL(SUM(TotalImport), 0) AS TotalImport, ISNULL(SUM(TotalCost), 0) AS TotalCost FROM DailyProductQuantityView";
-                    DataTable result = myDataServices.RunQuery(sSql); // Giả sử bạn đã có hàm RunQuery trả về DataTable trong lớp DataServices
+                    DataTable result = myDataServices.RunQuery(sSql);
 
                     if (result.Rows.Count > 0)
                     {
@@ -241,7 +242,14 @@ namespace DoAnSimple
                     MessageBox.Show("Lỗi khi lấy tổng số nhập vào và tổng chi phí: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
+            foreach (DataGridViewColumn column in dGVProductOut.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            foreach (DataGridViewColumn column in dGVProductIn.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
 
         private void frmStatic_Load(object sender, EventArgs e)
@@ -314,9 +322,19 @@ namespace DoAnSimple
             string sSql = "select * from ProductSalesView";
             dtSale = myDataServices.RunQuery(sSql);
             dGVProductOut.DataSource = dtSale;
+
             sSql = "select * from ProductImportView";
             dtImport = myDataServices.RunQuery(sSql);
             dGVProductIn.DataSource = dtImport;
+
+            foreach (DataGridViewColumn column in dGVProductOut.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            foreach (DataGridViewColumn column in dGVProductIn.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
     }
 }
