@@ -15,6 +15,7 @@ namespace DoAnSimple
         public ManagerMain()
         {
             InitializeComponent();
+            this.AutoScroll = true;
             openChildControl(new frmMain());
         }
         private UserControl activeControl = null;

@@ -104,7 +104,7 @@ namespace DrugStoreManagement
 
                 object result = command.ExecuteScalar();
 
-                if (result != null)
+                if (result != null && result != DBNull.Value)
                 {
                     return Convert.ToInt32(result);
                 }

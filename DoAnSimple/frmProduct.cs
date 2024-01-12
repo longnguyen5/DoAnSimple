@@ -22,7 +22,8 @@ namespace DoAnSimple
         private bool modeNew;
         // 4. khai báo biến để kiểm tra trùng tên thuốc
         private string oldProductName;
-
+        // 5. khai báo biến imagePath
+        private string imagePath;
         public frmProduct()
         {
             InitializeComponent();
@@ -38,15 +39,8 @@ namespace DoAnSimple
                 MessageBox.Show("Lỗi kết nối với cơ sở dữ liệu.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            // Cập nhật số lượng sản phẩm (Loại bỏ các sản phẩm đã hết hạn sử dụng)
-            string sSql = "UPDATE Product\r\n" +
-                "SET Quantity = (SELECT SUM(SH.Quantity) \r\n               " +
-                "FROM Product_Date AS SH\r\n               " +
-                "WHERE SH.MaSP = Product.MaSP\r\n                 " +
-                "AND CAST(SH.HSD AS DATE) >= CAST(GETDATE() AS DATE))\r\n";
-            myDataServices.ExecuteNonQuery(sSql);
             // Chuyển dữ liệu vào cmbCategory
-            sSql = "Select * From [Category] Order By [Name];";
+            string sSql = "Select * From [Category] Order By [Name];";
             DataTable dtCategory = myDataServices.RunQuery(sSql);
             cmbCategory.DataSource = dtCategory;
             cmbCategory.DisplayMember = "Name";
@@ -57,10 +51,15 @@ namespace DoAnSimple
             cmbSupplier.DataSource = dtSupplier;
             cmbSupplier.DisplayMember = "Name";
             cmbSupplier.ValueMember = "Id";
+            pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             // Hiển thị dữ liệu lên lưới
             Display();
             // Thiết lập trạng thái các điều khiển
             dGVProduct.AutoResizeColumns();
+            int columnIndex = 6; // Thay thế bằng chỉ số cột thực tế
+            int newWidth = 150; // Thay thế bằng chiều rộng mới bạn muốn đặt
+
+            dGVProduct.Columns[columnIndex].Width = newWidth;
             SetControls(false);
         }
         private void dGVProduct_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -73,8 +72,32 @@ namespace DoAnSimple
             txtId.Text = dGVProduct.Rows[e.RowIndex].Cells[0].Value.ToString();
             txtName.Text = dGVProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtPrice.Text = dGVProduct.Rows[e.RowIndex].Cells[4].Value.ToString();
-            txtQuantity.Text = dGVProduct.Rows[e.RowIndex].Cells[5].Value.ToString();
-            txtDescription.Text = dGVProduct.Rows[e.RowIndex].Cells[6].Value.ToString();
+
+            string sSql = "SELECT SUM(quantity) AS sl FROM productdate WHERE productid = @productid AND expdate >= GETDATE()";
+            int n = myDataServices.ExecuteScalar(sSql, new SqlParameter("@productid", int.Parse(txtId.Text)));
+            if (n > 0)
+            {
+                txtQuantity.Text = n.ToString();
+            }
+            else if (n == -1 || n == 0)
+            {
+                txtQuantity.Text = "0";
+            }
+            txtDescription.Text = dGVProduct.Rows[e.RowIndex].Cells[5].Value.ToString();
+
+            string duLieuHinhAnh = dGVProduct.Rows[e.RowIndex].Cells[6].Value.ToString();
+
+            if (string.IsNullOrEmpty(duLieuHinhAnh))
+            {
+                // Nếu đường dẫn hình ảnh rỗng, sử dụng ảnh mặc định
+                pictureBox.Image = Properties.Resources.product;
+            }
+            else
+            {
+                // Ngược lại, sử dụng đường dẫn hình ảnh từ cơ sở dữ liệu
+                pictureBox.ImageLocation = duLieuHinhAnh;
+                imagePath = duLieuHinhAnh;
+            }
             // Lưu tên sản phẩm để check trùng tên hay không
             oldProductName = txtName.Text;
         }
@@ -98,7 +121,7 @@ namespace DoAnSimple
             cmbSupplier.Enabled = edit;
             cmbCategory.Enabled = edit;
             txtPrice.Enabled = edit;
-            txtQuantity.Enabled = edit;
+
             txtDescription.Enabled = edit;
             // Các nút
             btnAdd.Enabled = !edit;
@@ -106,6 +129,8 @@ namespace DoAnSimple
             btnDelete.Enabled = !edit;
             btnSave.Enabled = edit;
             btnCancel.Enabled = edit;
+            button1.Enabled = edit;
+            button2.Enabled = edit;
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -144,8 +169,12 @@ namespace DoAnSimple
             int r = dGVProduct.CurrentRow.Index;
             // Lấy mã ProductId
             string ProductId = dGVProduct.Rows[r].Cells["Id"].Value.ToString();
+
+            string sSql = "Update [ProductDate] set ProductId = null WHERE productId = @ProductId";
+            myDataServices.ExecuteNonQuery(sSql, new SqlParameter("@ProductId", ProductId));
+
             // Xóa dữ liệu khỏi bảng Product
-            string sSql = "DELETE FROM [Product] WHERE Id = @ProductId";
+            sSql = "DELETE FROM [Product] WHERE Id = @ProductId";
             myDataServices.ExecuteNonQuery(sSql, new SqlParameter("@ProductId", ProductId));
             // Refresh the data display
             Display();
@@ -164,18 +193,6 @@ namespace DoAnSimple
             {
                 MessageBox.Show("Đề nghị nhập giá sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtPrice.Focus();
-                return;
-            }
-            if (!int.TryParse(txtQuantity.Text, out int quantityValue))
-            {
-                MessageBox.Show("Vui lòng nhập một giá trị số nguyên hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtQuantity.Focus();
-                return;
-            }
-            if (quantityValue < 0)
-            {
-                MessageBox.Show("Số lượng sản phẩm không được bé hơn 0!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtQuantity.Focus();
                 return;
             }
             string sSql;
@@ -202,8 +219,8 @@ namespace DoAnSimple
                 myDataRow["CategoryId"] = cmbCategory.SelectedValue;
                 myDataRow["SupplierId"] = cmbSupplier.SelectedValue;
                 myDataRow["Price"] = txtPrice.Text;
-                myDataRow["Quantity"] = txtQuantity.Text;
                 myDataRow["Description"] = txtDescription.Text;
+                myDataRow["ImagePath"] = imagePath;
                 dtProduct.Rows.Add(myDataRow);
                 myDataServices.Update(dtProduct);
             }
@@ -217,8 +234,9 @@ namespace DoAnSimple
                 myDataRow["CategoryID"] = cmbCategory.SelectedValue;
                 myDataRow["SupplierID"] = cmbSupplier.SelectedValue;
                 myDataRow["Price"] = txtPrice.Text;
-                myDataRow["Quantity"] = txtQuantity.Text;
+
                 myDataRow["Description"] = txtDescription.Text;
+                myDataRow["ImagePath"] = imagePath;
                 myDataServices.Update(dtProduct);
             }
             Display();
@@ -251,6 +269,14 @@ namespace DoAnSimple
             mySqlConnection.Close();
         }
 
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox.Image = new Bitmap(dlg.FileName);
+                imagePath = dlg.FileName;
+            }
+        }
     }
 }

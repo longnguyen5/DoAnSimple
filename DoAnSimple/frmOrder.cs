@@ -335,11 +335,16 @@ namespace DoAnSimple
             DisplayCustomer();
             DisplayProduct();
             DisplayOrder();
+
             /*rbDrugName.Checked = true;
             rbCusName.Checked = true;*/
             dGVCustomer.AutoResizeColumns();
             dGVProduct.AutoResizeColumns();
             dGVOrder.AutoResizeColumns();
+            int columnIndex = 6; // Thay thế bằng chỉ số cột thực tế
+            int newWidth = 100; // Thay thế bằng chiều rộng mới bạn muốn đặt
+
+            dGVProduct.Columns[columnIndex].Width = newWidth;
             //thiết lập trạng thái các điều khiển
             SetControls(false);
         }

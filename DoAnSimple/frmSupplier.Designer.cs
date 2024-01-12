@@ -87,16 +87,16 @@
             this.label7.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(20, 146);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 18);
+            this.label7.Size = new System.Drawing.Size(53, 18);
             this.label7.TabIndex = 9;
-            this.label7.Text = "Mô tả:";
+            this.label7.Text = "Địa chỉ:";
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(9, 167);
+            this.txtDescription.Location = new System.Drawing.Point(165, 146);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(458, 122);
+            this.txtDescription.Size = new System.Drawing.Size(302, 122);
             this.txtDescription.TabIndex = 6;
             // 
             // txtId

@@ -65,9 +65,9 @@
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Location = new System.Drawing.Point(68, 14);
+            this.txtSearch.Location = new System.Drawing.Point(68, 20);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(553, 26);
+            this.txtSearch.Size = new System.Drawing.Size(537, 26);
             this.txtSearch.TabIndex = 14;
             // 
             // groupBox3
@@ -80,7 +80,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(557, 57);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(706, 74);
+            this.groupBox3.Size = new System.Drawing.Size(706, 124);
             this.groupBox3.TabIndex = 22;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tìm kiếm";
@@ -89,20 +89,21 @@
             // 
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnRefresh.Location = new System.Drawing.Point(627, 42);
+            this.btnRefresh.Location = new System.Drawing.Point(611, 58);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(61, 26);
+            this.btnRefresh.Size = new System.Drawing.Size(77, 39);
             this.btnRefresh.TabIndex = 19;
             this.btnRefresh.Text = "Làm mới";
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnSearch
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnSearch.Location = new System.Drawing.Point(627, 12);
+            this.btnSearch.Location = new System.Drawing.Point(611, 12);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(61, 26);
+            this.btnSearch.Size = new System.Drawing.Size(77, 40);
             this.btnSearch.TabIndex = 15;
             this.btnSearch.Text = "Tìm";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -112,6 +113,7 @@
             this.txtId.Enabled = false;
             this.txtId.Location = new System.Drawing.Point(152, 31);
             this.txtId.Name = "txtId";
+            this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(376, 26);
             this.txtId.TabIndex = 8;
             // 
@@ -123,6 +125,7 @@
             this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnEdit
             // 
@@ -132,6 +135,7 @@
             this.btnEdit.TabIndex = 8;
             this.btnEdit.Text = "Sửa";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdd
             // 
@@ -141,6 +145,7 @@
             this.btnAdd.TabIndex = 7;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtContact
             // 
@@ -167,6 +172,7 @@
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // groupBox2
             // 
@@ -192,6 +198,7 @@
             this.btnCancel.TabIndex = 12;
             this.btnCancel.Text = "Hủy";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtName
             // 
@@ -307,7 +314,7 @@
             this.dGVCustomer.Name = "dGVCustomer";
             this.dGVCustomer.RowHeadersWidth = 51;
             this.dGVCustomer.RowTemplate.Height = 24;
-            this.dGVCustomer.Size = new System.Drawing.Size(694, 585);
+            this.dGVCustomer.Size = new System.Drawing.Size(694, 532);
             this.dGVCustomer.TabIndex = 0;
             this.dGVCustomer.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVCustomer_RowEnter);
             // 
@@ -330,9 +337,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.dGVCustomer);
             this.groupBox4.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(557, 134);
+            this.groupBox4.Location = new System.Drawing.Point(557, 187);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(706, 624);
+            this.groupBox4.Size = new System.Drawing.Size(706, 571);
             this.groupBox4.TabIndex = 23;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Dữ liệu";
@@ -386,8 +393,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dateDOB;
         private System.Windows.Forms.ComboBox cmbGender;
+        private System.Windows.Forms.DateTimePicker dateDOB;
+        private System.Windows.Forms.Label label4;
     }
 }

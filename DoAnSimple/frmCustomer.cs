@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace DoAnSimple
         // 3. khai báo biến kiểm tra đã chọn <thêm mới> hoặc <sửa>
         private bool modeNew;
         // 4. khai báo biến để kiểm tra trùng tên thuốc
-        private string oldCustomerName;
+        private string oldPhone;
 
         public frmCustomer()
         {
@@ -45,8 +46,6 @@ namespace DoAnSimple
             dGVCustomer.AutoResizeColumns();
             SetControls(false);
         }
-
-
 
         private void Display()
         {
@@ -77,6 +76,8 @@ namespace DoAnSimple
             btnDelete.Enabled = !edit;
             btnSave.Enabled = edit;
             btnCancel.Enabled = edit;
+
+            dGVCustomer.Enabled = !edit;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -117,7 +118,70 @@ namespace DoAnSimple
             txtAddress.Text = dGVCustomer.Rows[e.RowIndex].Cells[3].Value.ToString();
             txtContact.Text = dGVCustomer.Rows[e.RowIndex].Cells[4].Value.ToString();
             // Lưu tên khách hàng để check trùng tên hay không
-            oldCustomerName = txtName.Text;
+            oldPhone = txtContact.Text;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            // 1. Kiểm tra dữ liệu
+            if (txtName.Text.Trim() == "")
+            {
+                MessageBox.Show("Đề nghị nhập tên khách hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtName.Focus();
+                return;
+            }
+            if (txtContact.Text.Trim() == "")
+            {
+                MessageBox.Show("Đề nghị nhập số điện thoại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtContact.Focus();
+                return;
+            }
+            // Thêm mới hoặc sửa
+            if (modeNew)
+            {
+                // Thêm mới 
+                // 1. Thêm dữ liệu vào bảng Product
+                DataRow myDataRow = dtCustomer.NewRow();
+                myDataRow["Name"] = txtName.Text;
+                myDataRow["DOB"] = dateDOB.Value;
+                myDataRow["Address"] = txtAddress.Text;
+                myDataRow["Phone"] = txtContact.Text;
+                myDataRow["Gender"] = cmbGender.SelectedIndex;
+                dtCustomer.Rows.Add(myDataRow);
+                myDataServices.Update(dtCustomer);
+            }
+            else
+            {
+                // Edit data in the Drugs table
+                // Lấy dòng đang chọn
+                int r = dGVCustomer.CurrentRow.Index;
+                DataRow myDataRow = dtCustomer.Rows[r];
+                myDataRow["Name"] = txtName.Text;
+                myDataRow["DOB"] = dateDOB.Value;
+                myDataRow["Address"] = txtAddress.Text;
+                myDataRow["Phone"] = txtContact.Text;
+                myDataRow["Gender"] = cmbGender.SelectedIndex;
+                myDataServices.Update(dtCustomer);
+            }
+            Display();
+            SetControls(false);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            // Nút xóa
+            // Thông báo người dùng có chắc chắn xóa dữ liệu
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn xóa dữ liệu này không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.No) return;
+            // Lấy mã của dòng được chọn trong dGVProduct
+            int r = dGVCustomer.CurrentRow.Index;
+            // Lấy mã ProductId
+            string ProductId = dGVCustomer.Rows[r].Cells["Id"].Value.ToString();
+            // Xóa dữ liệu khỏi bảng Product
+            string sSql = "DELETE FROM [Product] WHERE Id = @ProductId";
+            myDataServices.ExecuteNonQuery(sSql, new SqlParameter("@ProductId", ProductId));
+            // Refresh the data display
+            Display();
         }
     }
 }
