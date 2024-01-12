@@ -38,8 +38,15 @@ namespace DoAnSimple
                 MessageBox.Show("Lỗi kết nối với cơ sở dữ liệu.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            // Cập nhật số lượng sản phẩm (Loại bỏ các sản phẩm đã hết hạn sử dụng)
+            string sSql = "UPDATE Product\r\n" +
+                "SET Quantity = (SELECT SUM(SH.Quantity) \r\n               " +
+                "FROM Product_Date AS SH\r\n               " +
+                "WHERE SH.MaSP = Product.MaSP\r\n                 " +
+                "AND CAST(SH.HSD AS DATE) >= CAST(GETDATE() AS DATE))\r\n";
+            myDataServices.ExecuteNonQuery(sSql);
             // Chuyển dữ liệu vào cmbCategory
-            string sSql = "Select * From [Category] Order By [Name];";
+            sSql = "Select * From [Category] Order By [Name];";
             DataTable dtCategory = myDataServices.RunQuery(sSql);
             cmbCategory.DataSource = dtCategory;
             cmbCategory.DisplayMember = "Name";
@@ -243,5 +250,7 @@ namespace DoAnSimple
             myDataReader.Close();
             mySqlConnection.Close();
         }
+
+
     }
 }

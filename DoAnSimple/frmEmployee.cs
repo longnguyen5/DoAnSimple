@@ -16,15 +16,18 @@ namespace DoAnSimple
     {
         // 1. khai báo đối tượng DataServices
         private DataServices myDataServices;
-        // 2. khai báo đối tượng DataTable để lưu dũ liệu bảng Product
+        // 2. khai báo đối tượng DataTable để lưu dũ liệu bảng User
         private DataTable dtUser;
         // 3. khai báo biến kiểm tra đã chọn <thêm mới> hoặc <sửa>
         private bool modeNew;
-        // 4. khai báo biến để kiểm tra trùng tên thuốc
+        // 4. khai báo biến để kiểm tra trùng tên 
         private string oldName;
+        // 5. khai báo biến imagePath
+        private string imagePath;
         public frmEmployee()
         {
             InitializeComponent();
+            this.AutoScroll = true;
         }
 
         private void frmEmployee_Load(object sender, EventArgs e)
@@ -45,10 +48,27 @@ namespace DoAnSimple
             cmbUserType.Items.Add("Nhân viên");
             cmbUserType.Items.Add("Quản lý");
             cmbUserType.SelectedIndex = 0;
+
+            pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             SetControls(false);
             dGVProduct.AutoResizeColumns();
             Display();
+            dGVProduct.CellFormatting += new DataGridViewCellFormattingEventHandler(dGVProduct_CellFormatting);
         }
+        private void dGVProduct_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Kiểm tra xem đang định dạng cột mật khẩu hay không (đổi 'Password' thành tên thực tế của cột)
+            if (e.ColumnIndex >= 0 && dGVProduct.Columns[e.ColumnIndex].Name == "Password")
+            {
+                // Kiểm tra giá trị không phải null để tránh lỗi
+                if (e.Value != null)
+                {
+                    // Đổi giá trị thành số dấu * tương ứng với độ dài của mật khẩu
+                    e.Value = new string('*', e.Value.ToString().Length);
+                }
+            }
+        }
+
         private void Display()
         {
             // Khai báo xâu truy vấn sql
@@ -71,7 +91,7 @@ namespace DoAnSimple
                 cmbStatus.SelectedIndex = 1;
             }
 
-            string type = dGVProduct.Rows[e.RowIndex].Cells[3].Value.ToString();
+            string type = dGVProduct.Rows[e.RowIndex].Cells[8].Value.ToString();
             if (type == "0")
             {
                 cmbUserType.SelectedIndex = 0;
@@ -81,6 +101,7 @@ namespace DoAnSimple
                 cmbUserType.SelectedIndex = 1;
             }
             // Hiển thị các textbox khác 
+            oldName = txtName.Text;
             txtId.Text = dGVProduct.Rows[e.RowIndex].Cells[0].Value.ToString();
             txtName.Text = dGVProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtPhone.Text = dGVProduct.Rows[e.RowIndex].Cells[4].Value.ToString();
@@ -88,6 +109,20 @@ namespace DoAnSimple
             txtPassword.Text = dGVProduct.Rows[e.RowIndex].Cells[3].Value.ToString();
             txtEmail.Text = dGVProduct.Rows[e.RowIndex].Cells[5].Value.ToString();
             txtDescription.Text = dGVProduct.Rows[e.RowIndex].Cells[7].Value.ToString();
+            dateTimePicker.Value = Convert.ToDateTime(dGVProduct.Rows[e.RowIndex].Cells[10].Value);
+            string duLieuHinhAnh = dGVProduct.Rows[e.RowIndex].Cells[9].Value.ToString();
+
+            if (string.IsNullOrEmpty(duLieuHinhAnh))
+            {
+                // Nếu đường dẫn hình ảnh rỗng, sử dụng ảnh mặc định
+                pictureBox.Image = Properties.Resources.user;
+            }
+            else
+            {
+                // Ngược lại, sử dụng đường dẫn hình ảnh từ cơ sở dữ liệu
+                pictureBox.ImageLocation = duLieuHinhAnh;
+                imagePath = duLieuHinhAnh;
+            }
         }
         private void SetControls(bool edit)
         {
@@ -101,12 +136,19 @@ namespace DoAnSimple
             txtPhone.Enabled = edit;
             cmbStatus.Enabled = edit;
             cmbUserType.Enabled = edit;
+            checkBox.Enabled = edit;
+            dGVProduct.Enabled = !edit;
+
             // Các nút
+
             btnAdd.Enabled = !edit;
             btnEdit.Enabled = !edit;
             btnDelete.Enabled = !edit;
             btnSave.Enabled = edit;
             btnCancel.Enabled = edit;
+            btnImage.Enabled = edit;
+            button1.Enabled = edit;
+            dateTimePicker.Enabled = edit;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -121,6 +163,7 @@ namespace DoAnSimple
             txtPassword.Clear();
             txtPhone.Clear();
             txtName.Focus();
+            pictureBox.Image = Properties.Resources.user;
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -155,21 +198,6 @@ namespace DoAnSimple
                 txtName.Focus();
                 return;
             }
-
-            string sSql;
-            // 2. Kiểm tra có trùng tên sản phẩm hay không
-            if (modeNew || (!modeNew && txtName.Text.Trim() != oldName.Trim()))
-            {
-                sSql = "Select * From [User] Where [Name] = @Name";
-                DataServices dsSearch = new DataServices();
-                DataTable dtSearch = dsSearch.RunQuery(sSql, new SqlParameter("@Name", txtName.Text));
-                if (dtSearch.Rows.Count > 0)
-                {
-                    MessageBox.Show("Đã nhập/sửa trùng tên sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtName.Focus();
-                    return;
-                }
-            }
             // Thêm mới hoặc sửa
             if (modeNew)
             {
@@ -184,7 +212,8 @@ namespace DoAnSimple
                 myDataRow["Status"] = cmbStatus.SelectedIndex;
                 myDataRow["Description"] = txtDescription.Text;
                 myDataRow["Type"] = cmbUserType.SelectedIndex;
-
+                myDataRow["ImagePath"] = imagePath;
+                myDataRow["DateIn"] = dateTimePicker.Value.ToString();
                 dtUser.Rows.Add(myDataRow);
                 myDataServices.Update(dtUser);
             }
@@ -201,6 +230,8 @@ namespace DoAnSimple
                 myDataRow["Status"] = cmbStatus.SelectedIndex;
                 myDataRow["Description"] = txtDescription.Text;
                 myDataRow["Type"] = cmbUserType.SelectedIndex;
+                myDataRow["ImagePath"] = imagePath;
+                myDataRow["DateIn"] = dateTimePicker.Value.ToString();
                 myDataServices.Update(dtUser);
             }
             Display();
@@ -242,6 +273,27 @@ namespace DoAnSimple
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             Display();
+        }
+
+        private void btnImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox.Image = new Bitmap(dlg.FileName);
+                imagePath = dlg.FileName;
+            }
+        }
+        private void checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // Khi trạng thái của CheckBox thay đổi, thay đổi kiểu hiển thị của TextBox mật khẩu
+            txtPassword.UseSystemPasswordChar = !checkBox.Checked;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            imagePath = null;
+            pictureBox.Image = Properties.Resources.user;
         }
     }
 }
