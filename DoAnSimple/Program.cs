@@ -16,7 +16,7 @@ namespace DoAnSimple
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ManagerMain());
+            Application.Run(new Login());
         }
     }
 }

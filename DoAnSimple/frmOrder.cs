@@ -66,6 +66,7 @@ namespace DoAnSimple
                 DataTable dtOrder = new DataTable();
                 dtOrder.Columns.Add("ID", typeof(string));
                 dtOrder.Columns.Add("Name", typeof(string));
+                dtOrder.Columns.Add("ProdID", typeof(string));
                 dtOrder.Columns.Add("Price", typeof(string));
                 dtOrder.Columns.Add("Quantity", typeof(string));
                 dGVOrder.DataSource = dtOrder;
@@ -112,24 +113,18 @@ namespace DoAnSimple
                 dGVOrder.DataSource = dtOrder;
             }
         }
-        private int orderId;
+        private int orderId = -1;
         private void btnAddOrder_Click(object sender, EventArgs e)
         {
             // Tạo hóa đơn
             modeNew = true;
             SetControls(true);
-            txtCustomerName.Clear();
-            txtPhone.Clear();
+            /*            txtCustomerName.Clear();
+                        txtPhone.Clear();*/
             txtCustomerName.Focus();
             txtProductName.Clear();
             txtQuantity.Clear();
 
-            int r = dGVCustomer.CurrentRow.Index;
-            string CustomerId = dGVCustomer.Rows[r].Cells["Id"].Value.ToString();
-            string OrderDate = DateTime.Now.ToString();
-
-            string sSql = "INSERT INTO [Order] (CustomerId, Date) VALUES (@CustomerId, @OrderDate); SELECT SCOPE_IDENTITY();";
-            orderId = (int)myDataServices.ExecuteScalar(sSql, new SqlParameter("@CustomerId", CustomerId), new SqlParameter("@OrderDate", OrderDate));
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -148,6 +143,7 @@ namespace DoAnSimple
                     // Thêm các cột vào DataTable
                     dtOrder.Columns.Add("Id");
                     dtOrder.Columns.Add("Name");
+                    dtOrder.Columns.Add("ProdId");
                     dtOrder.Columns.Add("Quantity");
                     dtOrder.Columns.Add("Discount");
                 }
@@ -159,6 +155,7 @@ namespace DoAnSimple
                 DataRow dataRow = dtOrder.NewRow();
                 dataRow["Id"] = productId;
                 dataRow["Name"] = txtProductName.Text; // Đã thêm .Text để lấy giá trị từ TextBox
+                dataRow["ProdId"] = ((DataRowView)cmbProdId.SelectedItem)["prodid"].ToString();
                 dataRow["Quantity"] = txtQuantity.Text; // Đã thêm .Text để lấy giá trị từ TextBox
                 dataRow["Discount"] = cmbDiscount.SelectedValue?.ToString(); // Kiểm tra null để tránh lỗi
                 dtOrder.Rows.Add(dataRow);
@@ -177,6 +174,12 @@ namespace DoAnSimple
             // Kiểm tra xem có dữ liệu để lưu không
             if (dGVOrder.Rows.Count > 0)
             {
+                int r = dGVCustomer.CurrentRow.Index;
+                string CustomerId = dGVCustomer.Rows[r].Cells["Id"].Value.ToString();
+                string OrderDate = DateTime.Now.ToString();
+
+                string sSql = "INSERT INTO [Order] (CustomerId, Date) VALUES (@CustomerId, @OrderDate); SELECT SCOPE_IDENTITY();";
+                orderId = (int)myDataServices.ExecuteScalar(sSql, new SqlParameter("@CustomerId", CustomerId), new SqlParameter("@OrderDate", OrderDate));
                 // Duyệt qua từng dòng trong dGVOrder
                 foreach (DataGridViewRow row in dGVOrder.Rows)
                 {
@@ -184,14 +187,15 @@ namespace DoAnSimple
                     int productId = Convert.ToInt32(row.Cells["Id"].Value);
                     int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
                     string discount = row.Cells["Discount"].Value.ToString();
-
+                    string prodid = row.Cells["ProdId"].Value.ToString();
                     // Thực hiện lệnh SQL để cập nhật cơ sở dữ liệu
-                    string sql = "INSERT INTO Order_details (Id, ProductId, Quantity, DiscountId) VALUES (@OrderId, @ProductId, @Quantity, @Discount)";
+                    string sql = "INSERT INTO Order_details (Id, ProductId, ProdId, Quantity, DiscountId) VALUES (@OrderId, @ProductId, @ProdId, @Quantity, @Discount)";
 
                     // Thực hiện ExecuteNonQuery để thực hiện lệnh SQL
                     myDataServices.ExecuteNonQuery(sql,
                         new SqlParameter("@OrderId", orderId),
                         new SqlParameter("@ProductId", productId),
+                        new SqlParameter("@ProdId", prodid),
                         new SqlParameter("@Quantity", quantity),
                         new SqlParameter("@Discount", discount)
                     );
@@ -216,24 +220,28 @@ namespace DoAnSimple
         private void btnExport_Click(object sender, EventArgs e)
         {
             // Tạo nội dung hóa đơn
-            string invoiceContent = GenerateInvoiceContent(orderId);
-
-            // Hiển thị hộp thoại để chọn vị trí lưu tệp
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-            saveFileDialog.Title = "Chọn vị trí để lưu hóa đơn";
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            if (orderId != -1)
             {
-                // Lưu hóa đơn vào tệp tin văn bản
-                File.WriteAllText(saveFileDialog.FileName, invoiceContent);
-                MessageBox.Show("Hóa đơn đã được xuất thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string invoiceContent = GenerateInvoiceContent(orderId);
+
+                // Hiển thị hộp thoại để chọn vị trí lưu tệp
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                saveFileDialog.Title = "Chọn vị trí để lưu hóa đơn";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Lưu hóa đơn vào tệp tin văn bản
+                    File.WriteAllText(saveFileDialog.FileName, invoiceContent);
+                    MessageBox.Show("Hóa đơn đã được xuất thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                orderId = -1;
             }
         }
         private DataTable GetInvoiceDetails(int orderId)
         {
             // Thực hiện truy vấn SQL để lấy chi tiết hóa đơn (sản phẩm) cho một hóa đơn cụ thể
-            string sSql = "SELECT p.Name AS ProductName, od.Quantity, od.Cost " +
+            string sSql = "SELECT p.Name AS ProductName, od.ProdId, od.Quantity, od.Cost " +
                           "FROM Order_details od " +
                           "INNER JOIN Product p ON od.ProductId = p.Id " +
                           "WHERE od.Id = @OrderId";
@@ -252,21 +260,31 @@ namespace DoAnSimple
             string invoiceContent = $"HÓA ĐƠN\nNgày: {currentDate}\n";
 
             // Lấy thông tin khách hàng
-            invoiceContent += "Khách hàng: " + txtCustomerName.Text + "\n";
-            invoiceContent += "Số điện thoại: " + txtPhone.Text + "\n";
+            invoiceContent += $"Khách hàng: {txtCustomerName.Text}\n";
+            invoiceContent += $"Số điện thoại: {txtPhone.Text}\n\n";
+
+            // Thêm tiêu đề danh sách mua hàng
+            invoiceContent += "Danh sách mua hàng:\n";
+            invoiceContent += "---------------------------------------------------\n";
+            invoiceContent += "Tên SP\t\t||SL\t||Mã SX\t\t||Giá tiền\n";
+            invoiceContent += "---------------------------------------------------\n";
 
             // Lấy chi tiết hóa đơn (sản phẩm)
             DataTable dtInvoiceDetails = GetInvoiceDetails(orderId);
-
             // Thêm thông tin sản phẩm vào nội dung hóa đơn
             foreach (DataRow row in dtInvoiceDetails.Rows)
             {
                 string productName = row["ProductName"].ToString();
+                string prodid = row["ProdId"].ToString();
                 int quantity = Convert.ToInt32(row["Quantity"]);
                 decimal cost = Convert.ToDecimal(row["Cost"]);
 
-                invoiceContent += $"{productName}\t{quantity}\t{cost:F2}VND\n";
+                // Thêm dòng cho từng sản phẩm
+                invoiceContent += $"{productName}\t||{quantity}\t||{prodid}\t||{cost:F2}VND\n";
             }
+
+            // Thêm đường kẻ cuối cùng của danh sách mua hàng
+            invoiceContent += "---------------------------------------------------\n";
 
             // Tính tổng cộng
             decimal total = dtInvoiceDetails.AsEnumerable().Sum(row => Convert.ToDecimal(row["Cost"]));
@@ -274,6 +292,7 @@ namespace DoAnSimple
 
             return invoiceContent;
         }
+
 
         private void btnProductSearch_Click(object sender, EventArgs e)
         {
@@ -331,6 +350,7 @@ namespace DoAnSimple
             cmbProductFilter.Items.Add("Tìm theo tên");
             cmbProductFilter.Items.Add("Tìm theo mã");
             cmbProductFilter.SelectedIndex = 0;
+
             //hiển thị dữ liệu lên lưới
             DisplayCustomer();
             DisplayProduct();
@@ -388,13 +408,15 @@ namespace DoAnSimple
             txtQuantity.Enabled = edit;
             txtProductName.Enabled = edit;
             txtTotal.Enabled = edit;
+            dGVCustomer.Enabled = !edit;
             cmbDiscount.Enabled = edit;
+            cmbProdId.Enabled = edit;
             //các nút
             btnAddOrder.Enabled = !edit;
             btnSave.Enabled = edit;
             btnNew.Enabled = edit;
-            btnExport.Enabled = edit;
-            btnAddProduct.Enabled = edit;
+            /*            btnExport.Enabled = edit;*/
+
             btnRemoveProduct.Enabled = edit;
         }
 
@@ -408,8 +430,25 @@ namespace DoAnSimple
         private void dGVProduct_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             // đưa tên sản phẩm sang textbox
-            txtProductName.Text = dGVProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
+            if (dGVProduct.Rows[e.RowIndex].Cells[1].Value != null)
+            {
+                txtProductName.Text = dGVProduct.Rows[e.RowIndex].Cells[1].Value.ToString();
+            }
+
             txtProductId.Text = dGVProduct.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+            string sql = "select prodid from productdate where productId = @id and expDate >= getdate();";
+            DataTable dtProdId = myDataServices.RunQuery(sql, new SqlParameter("@id", txtProductId.Text));
+            if (dtProdId.Rows.Count > 0)
+            {
+                cmbProdId.DataSource = dtProdId;
+                cmbProdId.DisplayMember = "prodid";
+            }
+            else
+            {
+                MessageBox.Show("Sản phẩm bạn chọn không còn hàng nữa!", "Thông báo", MessageBoxButtons.OK);
+                cmbProdId.DataSource = null;
+            }
         }
     }
 }

@@ -167,8 +167,6 @@ namespace DoAnSimple
         private void btnAddImport_Click(object sender, EventArgs e)
         {
             SetControls(true);
-            txtSupplierName.Clear();
-            txtContact.Clear();
             txtProductId.Clear();
             textBox1.Clear();
             txtProductName.Clear();
@@ -184,9 +182,6 @@ namespace DoAnSimple
         private void btnNew_Click(object sender, EventArgs e)
         {
             SetControls(true);
-            textBox1.Clear();
-            txtProductId.Clear();
-            txtProductName.Clear();
             // Kiểm tra xem có giá trị trong txtProductId không
             if (!string.IsNullOrEmpty(txtProductId.Text))
             {

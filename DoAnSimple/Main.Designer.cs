@@ -36,7 +36,6 @@
             this.btnImport = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnLogOut = new System.Windows.Forms.Button();
-            this.btnStatic = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -116,7 +115,6 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.btnLogOut);
-            this.groupBox1.Controls.Add(this.btnStatic);
             this.groupBox1.Controls.Add(this.btnProduct);
             this.groupBox1.Controls.Add(this.btnCustomer);
             this.groupBox1.Controls.Add(this.btnCategory);
@@ -141,17 +139,6 @@
             this.btnLogOut.Text = "Đăng xuất";
             this.btnLogOut.UseVisualStyleBackColor = true;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
-            // 
-            // btnStatic
-            // 
-            this.btnStatic.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStatic.Location = new System.Drawing.Point(19, 387);
-            this.btnStatic.Name = "btnStatic";
-            this.btnStatic.Size = new System.Drawing.Size(177, 49);
-            this.btnStatic.TabIndex = 6;
-            this.btnStatic.Text = "Thống kê";
-            this.btnStatic.UseVisualStyleBackColor = true;
-            this.btnStatic.Click += new System.EventHandler(this.btnStatic_Click);
             // 
             // groupBox3
             // 
@@ -229,7 +216,6 @@
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnLogOut;
-        private System.Windows.Forms.Button btnStatic;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelChildForm;

@@ -31,6 +31,8 @@
             this.cmbCustomerFilter = new System.Windows.Forms.ComboBox();
             this.txtCustomerSearch = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cmbProdId = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.txtProductId = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.dGVOrder = new System.Windows.Forms.DataGridView();
@@ -45,10 +47,10 @@
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnAddOrder = new System.Windows.Forms.Button();
             this.dGVCustomer = new System.Windows.Forms.DataGridView();
             this.btnCustomerSearch = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnAddOrder = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dGVProduct = new System.Windows.Forms.DataGridView();
@@ -57,7 +59,6 @@
             this.txtProductSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnRemoveProduct = new System.Windows.Forms.Button();
-            this.btnAddProduct = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
@@ -98,6 +99,8 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.cmbProdId);
+            this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Controls.Add(this.txtProductId);
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.dGVOrder);
@@ -115,8 +118,26 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Chi tiết hóa đơn";
             // 
+            // cmbProdId
+            // 
+            this.cmbProdId.FormattingEnabled = true;
+            this.cmbProdId.Location = new System.Drawing.Point(326, 32);
+            this.cmbProdId.Name = "cmbProdId";
+            this.cmbProdId.Size = new System.Drawing.Size(121, 26);
+            this.cmbProdId.TabIndex = 33;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(271, 35);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(49, 18);
+            this.label12.TabIndex = 32;
+            this.label12.Text = "Mã SX:";
+            // 
             // txtProductId
             // 
+            this.txtProductId.Enabled = false;
             this.txtProductId.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProductId.Location = new System.Drawing.Point(157, 32);
             this.txtProductId.Name = "txtProductId";
@@ -155,7 +176,7 @@
             this.cmbDiscount.FormattingEnabled = true;
             this.cmbDiscount.Location = new System.Drawing.Point(157, 128);
             this.cmbDiscount.Name = "cmbDiscount";
-            this.cmbDiscount.Size = new System.Drawing.Size(241, 26);
+            this.cmbDiscount.Size = new System.Drawing.Size(290, 26);
             this.cmbDiscount.TabIndex = 28;
             // 
             // label3
@@ -189,7 +210,7 @@
             this.txtProductName.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProductName.Location = new System.Drawing.Point(157, 64);
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(245, 26);
+            this.txtProductName.Size = new System.Drawing.Size(290, 26);
             this.txtProductName.TabIndex = 24;
             // 
             // label10
@@ -207,7 +228,7 @@
             this.btnExport.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExport.Location = new System.Drawing.Point(48, 88);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(108, 24);
+            this.btnExport.Size = new System.Drawing.Size(166, 24);
             this.btnExport.TabIndex = 19;
             this.btnExport.Text = "Xuất hóa đơn";
             this.btnExport.UseVisualStyleBackColor = true;
@@ -246,7 +267,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnAddOrder);
             this.groupBox1.Controls.Add(this.dGVCustomer);
             this.groupBox1.Controls.Add(this.btnCustomerSearch);
             this.groupBox1.Controls.Add(this.cmbCustomerFilter);
@@ -259,17 +279,6 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Khách hàng";
-            // 
-            // btnAddOrder
-            // 
-            this.btnAddOrder.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddOrder.Location = new System.Drawing.Point(148, 57);
-            this.btnAddOrder.Name = "btnAddOrder";
-            this.btnAddOrder.Size = new System.Drawing.Size(136, 24);
-            this.btnAddOrder.TabIndex = 19;
-            this.btnAddOrder.Text = "HĐ mới";
-            this.btnAddOrder.UseVisualStyleBackColor = true;
-            this.btnAddOrder.Click += new System.EventHandler(this.btnAddOrder_Click);
             // 
             // dGVCustomer
             // 
@@ -307,6 +316,17 @@
             this.label5.Size = new System.Drawing.Size(109, 18);
             this.label5.TabIndex = 3;
             this.label5.Text = "Tìm kiếm theo:";
+            // 
+            // btnAddOrder
+            // 
+            this.btnAddOrder.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddOrder.Location = new System.Drawing.Point(233, 18);
+            this.btnAddOrder.Name = "btnAddOrder";
+            this.btnAddOrder.Size = new System.Drawing.Size(136, 32);
+            this.btnAddOrder.TabIndex = 19;
+            this.btnAddOrder.Text = "HĐ mới";
+            this.btnAddOrder.UseVisualStyleBackColor = true;
+            this.btnAddOrder.Click += new System.EventHandler(this.btnAddOrder_Click);
             // 
             // label1
             // 
@@ -395,7 +415,7 @@
             // 
             // btnRemoveProduct
             // 
-            this.btnRemoveProduct.Location = new System.Drawing.Point(5, 17);
+            this.btnRemoveProduct.Location = new System.Drawing.Point(0, 15);
             this.btnRemoveProduct.Name = "btnRemoveProduct";
             this.btnRemoveProduct.Size = new System.Drawing.Size(54, 35);
             this.btnRemoveProduct.TabIndex = 14;
@@ -403,23 +423,13 @@
             this.btnRemoveProduct.UseVisualStyleBackColor = true;
             this.btnRemoveProduct.Click += new System.EventHandler(this.btnRemoveProduct_Click);
             // 
-            // btnAddProduct
-            // 
-            this.btnAddProduct.Location = new System.Drawing.Point(65, 17);
-            this.btnAddProduct.Name = "btnAddProduct";
-            this.btnAddProduct.Size = new System.Drawing.Size(54, 35);
-            this.btnAddProduct.TabIndex = 15;
-            this.btnAddProduct.Text = ">";
-            this.btnAddProduct.UseVisualStyleBackColor = true;
-            this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
-            // 
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.btnAddOrder);
             this.groupBox3.Controls.Add(this.btnSave);
             this.groupBox3.Controls.Add(this.btnNew);
-            this.groupBox3.Controls.Add(this.btnAddProduct);
             this.groupBox3.Controls.Add(this.btnRemoveProduct);
             this.groupBox3.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(764, 695);
@@ -547,7 +557,6 @@
         private System.Windows.Forms.TextBox txtProductSearch;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnRemoveProduct;
-        private System.Windows.Forms.Button btnAddProduct;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnNew;
@@ -570,5 +579,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtProductId;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbProdId;
+        private System.Windows.Forms.Label label12;
     }
 }

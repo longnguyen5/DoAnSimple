@@ -54,11 +54,15 @@
             this.dGVCustomer = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.dGVBuyHistory = new System.Windows.Forms.DataGridView();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVCustomer)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dGVBuyHistory)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSearch
@@ -80,7 +84,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(557, 57);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(706, 124);
+            this.groupBox3.Size = new System.Drawing.Size(706, 116);
             this.groupBox3.TabIndex = 22;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tìm kiếm";
@@ -314,7 +318,7 @@
             this.dGVCustomer.Name = "dGVCustomer";
             this.dGVCustomer.RowHeadersWidth = 51;
             this.dGVCustomer.RowTemplate.Height = 24;
-            this.dGVCustomer.Size = new System.Drawing.Size(694, 532);
+            this.dGVCustomer.Size = new System.Drawing.Size(694, 241);
             this.dGVCustomer.TabIndex = 0;
             this.dGVCustomer.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVCustomer_RowEnter);
             // 
@@ -337,17 +341,48 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.dGVCustomer);
             this.groupBox4.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(557, 187);
+            this.groupBox4.Location = new System.Drawing.Point(557, 179);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(706, 571);
+            this.groupBox4.Size = new System.Drawing.Size(706, 268);
             this.groupBox4.TabIndex = 23;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Dữ liệu";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.dGVBuyHistory);
+            this.groupBox5.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.Location = new System.Drawing.Point(557, 469);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(706, 268);
+            this.groupBox5.TabIndex = 24;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Lịch sử mua sắm";
+            // 
+            // dGVBuyHistory
+            // 
+            this.dGVBuyHistory.AllowUserToAddRows = false;
+            this.dGVBuyHistory.AllowUserToDeleteRows = false;
+            this.dGVBuyHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dGVBuyHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGVBuyHistory.Location = new System.Drawing.Point(6, 21);
+            this.dGVBuyHistory.Name = "dGVBuyHistory";
+            this.dGVBuyHistory.ReadOnly = true;
+            this.dGVBuyHistory.RowHeadersWidth = 51;
+            this.dGVBuyHistory.RowTemplate.Height = 24;
+            this.dGVBuyHistory.Size = new System.Drawing.Size(694, 241);
+            this.dGVBuyHistory.TabIndex = 0;
             // 
             // frmCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -363,6 +398,8 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGVCustomer)).EndInit();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dGVBuyHistory)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -396,5 +433,7 @@
         private System.Windows.Forms.ComboBox cmbGender;
         private System.Windows.Forms.DateTimePicker dateDOB;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.DataGridView dGVBuyHistory;
     }
 }

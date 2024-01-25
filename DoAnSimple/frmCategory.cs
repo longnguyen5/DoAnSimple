@@ -44,6 +44,10 @@ namespace DoAnSimple
             Display();
             // Thiết lập trạng thái các điều khiển
             dGVCategory.AutoResizeColumns();
+            dGVCategory.Columns["Name"].Width = 70;
+            dGVCategory.Columns[0].HeaderText = "ID";
+            dGVCategory.Columns[1].HeaderText = "Tên phân loại";
+            dGVCategory.Columns[2].HeaderText = "Mô tả thêm của phân loại";
             SetControls(false);
         }
         private void dGVCategory_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -171,8 +175,8 @@ namespace DoAnSimple
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string sSql = "Select * from Category WHERE DrugName LIKE '%' + @DrugName + '%'";
-            DisplaySearch(sSql, new SqlParameter("@DrugName", txtSearch.Text.Trim()));
+            string sSql = "Select * from Discount WHERE Name LIKE '%' + @Name + '%'";
+            DisplaySearch(sSql, new SqlParameter("@Name", txtSearch.Text.Trim()));
         }
 
         private void DisplaySearch(string sSql, params SqlParameter[] parameters)

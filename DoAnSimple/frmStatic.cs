@@ -315,6 +315,50 @@ namespace DoAnSimple
             {
                 MessageBox.Show("Lỗi khi lấy tổng số nhập vào và tổng chi phí: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            // Lấy sản phẩm có ngày hết hạn sau ngày hiện tại
+            string sql1 = "SELECT p.id, p.name, SUM(pd.quantity) AS total_quantity " +
+                           "FROM product p " +
+                           "JOIN productdate pd ON p.id = pd.productid " +
+                           "WHERE pd.expDate > GETDATE() " +
+                           "GROUP BY p.id, p.name " +
+                           "ORDER BY p.id DESC";
+
+            DataTable dt1 = myDataServices.RunQuery(sql1);
+            dataGridView1.DataSource = dt1;
+
+            // Lấy sản phẩm có ngày hết hạn trong vòng 1 tháng kể từ ngày hiện tại
+            string sql2 = "SELECT p.id, p.name, SUM(pd.quantity) AS total_quantity " +
+                           "FROM product p " +
+                           "JOIN productdate pd ON p.id = pd.productid " +
+                           "WHERE pd.expDate BETWEEN GETDATE() AND DATEADD(MONTH, 1, GETDATE()) " +
+                           "GROUP BY p.id, p.name " +
+                           "ORDER BY p.id DESC";
+
+            DataTable dt2 = myDataServices.RunQuery(sql2);
+            dataGridView2.DataSource = dt2;
+
+            // Lấy tất cả sản phẩm (không có điều kiện về ngày hết hạn)
+            string sql3 = "SELECT p.id, p.name, SUM(pd.quantity) AS total_quantity " +
+                           "FROM product p " +
+                           "JOIN productdate pd ON p.id = pd.productid " +
+                           "GROUP BY p.id, p.name " +
+                           "ORDER BY p.id DESC";
+
+            DataTable dt3 = myDataServices.RunQuery(sql3);
+            dataGridView3.DataSource = dt3;
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            foreach (DataGridViewColumn column in dataGridView2.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            foreach (DataGridViewColumn column in dataGridView3.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
         private void Display()
         {

@@ -43,6 +43,7 @@
             this.panelChildForm = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -88,7 +89,7 @@
             // btnProduct
             // 
             this.btnProduct.Font = new System.Drawing.Font("Roboto Condensed", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProduct.Location = new System.Drawing.Point(20, 143);
+            this.btnProduct.Location = new System.Drawing.Point(21, 141);
             this.btnProduct.Name = "btnProduct";
             this.btnProduct.Size = new System.Drawing.Size(200, 50);
             this.btnProduct.TabIndex = 2;
@@ -99,7 +100,7 @@
             // btnCustomer
             // 
             this.btnCustomer.Font = new System.Drawing.Font("Roboto Condensed", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustomer.Location = new System.Drawing.Point(20, 204);
+            this.btnCustomer.Location = new System.Drawing.Point(21, 201);
             this.btnCustomer.Name = "btnCustomer";
             this.btnCustomer.Size = new System.Drawing.Size(200, 50);
             this.btnCustomer.TabIndex = 3;
@@ -110,7 +111,7 @@
             // btnCategory
             // 
             this.btnCategory.Font = new System.Drawing.Font("Roboto Condensed", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCategory.Location = new System.Drawing.Point(20, 21);
+            this.btnCategory.Location = new System.Drawing.Point(21, 21);
             this.btnCategory.Name = "btnCategory";
             this.btnCategory.Size = new System.Drawing.Size(200, 50);
             this.btnCategory.TabIndex = 0;
@@ -121,7 +122,7 @@
             // btnOrder
             // 
             this.btnOrder.Font = new System.Drawing.Font("Roboto Condensed", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrder.Location = new System.Drawing.Point(20, 326);
+            this.btnOrder.Location = new System.Drawing.Point(21, 381);
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Size = new System.Drawing.Size(200, 50);
             this.btnOrder.TabIndex = 5;
@@ -132,7 +133,7 @@
             // btnSupplier
             // 
             this.btnSupplier.Font = new System.Drawing.Font("Roboto Condensed", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSupplier.Location = new System.Drawing.Point(20, 82);
+            this.btnSupplier.Location = new System.Drawing.Point(21, 81);
             this.btnSupplier.Name = "btnSupplier";
             this.btnSupplier.Size = new System.Drawing.Size(200, 50);
             this.btnSupplier.TabIndex = 1;
@@ -143,7 +144,7 @@
             // btnImport
             // 
             this.btnImport.Font = new System.Drawing.Font("Roboto Condensed", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImport.Location = new System.Drawing.Point(20, 265);
+            this.btnImport.Location = new System.Drawing.Point(21, 321);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(200, 50);
             this.btnImport.TabIndex = 4;
@@ -155,6 +156,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.btnLogOut);
             this.groupBox1.Controls.Add(this.btnStatic);
             this.groupBox1.Controls.Add(this.btnProduct);
@@ -185,7 +187,7 @@
             // btnStatic
             // 
             this.btnStatic.Font = new System.Drawing.Font("Roboto Condensed", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStatic.Location = new System.Drawing.Point(20, 387);
+            this.btnStatic.Location = new System.Drawing.Point(21, 441);
             this.btnStatic.Name = "btnStatic";
             this.btnStatic.Size = new System.Drawing.Size(200, 50);
             this.btnStatic.TabIndex = 6;
@@ -224,6 +226,17 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Roboto Condensed", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(20, 261);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(200, 50);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Mã giảm giá";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // ManagerMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -236,6 +249,7 @@
             this.Name = "ManagerMain";
             this.Text = "ManagerMain";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.ManagerMain_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -261,5 +275,6 @@
         private System.Windows.Forms.Panel panelChildForm;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

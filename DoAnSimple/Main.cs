@@ -12,10 +12,12 @@ namespace DoAnSimple
 {
     public partial class Main : Form
     {
-        public Main()
+        private string sName;
+        public Main(string name)
         {
             InitializeComponent();
-            openChildControl(new frmMain());
+            sName = name;
+            openChildControl(new frmMain(sName));
         }
 
         private UserControl activeControl = null;
@@ -49,7 +51,7 @@ namespace DoAnSimple
 
         private void label1_Click(object sender, EventArgs e)
         {
-            openChildControl(new frmMain());
+            openChildControl(new frmMain(sName));
         }
 
         private void btnCategory_Click(object sender, EventArgs e)

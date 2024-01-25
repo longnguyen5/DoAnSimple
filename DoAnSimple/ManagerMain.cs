@@ -12,11 +12,13 @@ namespace DoAnSimple
 {
     public partial class ManagerMain : Form
     {
-        public ManagerMain()
+        private string sName;
+        public ManagerMain(string name)
         {
             InitializeComponent();
             this.AutoScroll = true;
-            openChildControl(new frmMain());
+            sName = name;
+            openChildControl(new frmMain(sName));
         }
         private UserControl activeControl = null;
         private void openChildControl(UserControl childControl)
@@ -42,7 +44,7 @@ namespace DoAnSimple
         }
         private void label1_Click(object sender, EventArgs e)
         {
-            openChildControl(new frmMain());
+            openChildControl(new frmMain(sName));
         }
 
         private void btnCategory_Click(object sender, EventArgs e)
@@ -86,6 +88,16 @@ namespace DoAnSimple
         private void button1_Click(object sender, EventArgs e)
         {
             openChildControl(new frmEmployee());
+        }
+
+        private void ManagerMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            openChildControl(new frmDiscount());
         }
     }
 }

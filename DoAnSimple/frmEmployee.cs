@@ -54,6 +54,16 @@ namespace DoAnSimple
             dGVProduct.AutoResizeColumns();
             Display();
             dGVProduct.CellFormatting += new DataGridViewCellFormattingEventHandler(dGVProduct_CellFormatting);
+            dGVProduct.Columns[1].HeaderText = "Tên nhân viên";
+            dGVProduct.Columns[2].HeaderText = "Tài khoản";
+            dGVProduct.Columns[3].HeaderText = "Mật khẩu";
+            dGVProduct.Columns[4].HeaderText = "Số điện thoại";
+            dGVProduct.Columns[5].HeaderText = "Email";
+            dGVProduct.Columns[6].HeaderText = "Trạng thái";
+            dGVProduct.Columns[7].HeaderText = "Mô tả";
+            dGVProduct.Columns[8].HeaderText = "Loại";
+            dGVProduct.Columns[9].HeaderText = "Hình ảnh";
+            dGVProduct.Columns[10].HeaderText = "Ngày vào";
         }
         private void dGVProduct_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -234,6 +244,7 @@ namespace DoAnSimple
                 myDataRow["DateIn"] = dateTimePicker.Value.ToString();
                 myDataServices.Update(dtUser);
             }
+            imagePath = "";
             Display();
             SetControls(false);
         }

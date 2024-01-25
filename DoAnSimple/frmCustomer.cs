@@ -44,6 +44,12 @@ namespace DoAnSimple
             Display();
             // Thiết lập trạng thái các điều khiển
             dGVCustomer.AutoResizeColumns();
+            dGVCustomer.Columns[0].HeaderText = "ID";
+            dGVCustomer.Columns[1].HeaderText = "Tên khách hàng";
+            dGVCustomer.Columns[2].HeaderText = "Ngày sinh";
+            dGVCustomer.Columns[3].HeaderText = "Địa chỉ";
+            dGVCustomer.Columns[4].HeaderText = "Số điện thoại";
+            dGVCustomer.Columns[5].HeaderText = "Giới tính";
             SetControls(false);
         }
 
@@ -119,6 +125,22 @@ namespace DoAnSimple
             txtContact.Text = dGVCustomer.Rows[e.RowIndex].Cells[4].Value.ToString();
             // Lưu tên khách hàng để check trùng tên hay không
             oldPhone = txtContact.Text;
+
+            // Hiện lịch sử mua hàng của khách hàng lên dgvBuyHistory
+            string sql = "Select o.id, o.[date], p.[name], od.prodid, od.quantity \r\n" +
+                "from Customer c \r\n" +
+                "join [Order] o on c.Id = o.CustomerId" +
+                "\r\njoin Order_details od on od.Id = o.Id " +
+                "\r\njoin product p on od.productId = p.id" +
+                "\r\nwhere o.customerid = @customerID" +
+                "\r\norder by o.[date] desc";
+            DataTable dt = myDataServices.RunQuery(sql, new SqlParameter("@customerID", txtId.Text));
+            dGVBuyHistory.DataSource = dt;
+            dGVBuyHistory.Columns[0].HeaderText = "Mã đơn hàng";
+            dGVBuyHistory.Columns[1].HeaderText = "Ngày đặt";
+            dGVBuyHistory.Columns[2].HeaderText = "Tên sản phẩm";
+            dGVBuyHistory.Columns[3].HeaderText = "Mã sản xuất";
+            dGVBuyHistory.Columns[4].HeaderText = "Số lượng";
         }
 
         private void btnSave_Click(object sender, EventArgs e)

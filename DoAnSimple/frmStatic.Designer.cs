@@ -254,9 +254,9 @@
             // 
             this.groupBox2.Controls.Add(this.dGVProductIn);
             this.groupBox2.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(11, 568);
+            this.groupBox2.Location = new System.Drawing.Point(3, 568);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(794, 292);
+            this.groupBox2.Size = new System.Drawing.Size(802, 292);
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Sản phẩm nhập về";
@@ -275,7 +275,7 @@
             this.dGVProductIn.ReadOnly = true;
             this.dGVProductIn.RowHeadersWidth = 51;
             this.dGVProductIn.RowTemplate.Height = 24;
-            this.dGVProductIn.Size = new System.Drawing.Size(777, 265);
+            this.dGVProductIn.Size = new System.Drawing.Size(785, 265);
             this.dGVProductIn.TabIndex = 1;
             // 
             // label6

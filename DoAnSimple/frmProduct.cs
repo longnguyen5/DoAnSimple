@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,11 +56,21 @@ namespace DoAnSimple
             // Hiển thị dữ liệu lên lưới
             Display();
             // Thiết lập trạng thái các điều khiển
-            dGVProduct.AutoResizeColumns();
-            int columnIndex = 6; // Thay thế bằng chỉ số cột thực tế
-            int newWidth = 150; // Thay thế bằng chiều rộng mới bạn muốn đặt
 
-            dGVProduct.Columns[columnIndex].Width = newWidth;
+            dGVProduct.Columns["Name"].Width = 200;
+            dGVProduct.Columns["Price"].Width = 40;
+
+            dGVProduct.Columns["CategoryId"].Width = 40;
+            dGVProduct.Columns["SupplierId"].Width = 40;
+            dGVProduct.Columns["Id"].Width = 20;
+
+            dGVProduct.Columns[1].HeaderText = "Tên sản phẩm";
+            dGVProduct.Columns[2].HeaderText = "Mã phân loại";
+            dGVProduct.Columns[3].HeaderText = "Mã NCC";
+            dGVProduct.Columns[4].HeaderText = "Giá sản phẩm";
+            dGVProduct.Columns[5].HeaderText = "Mô tả";
+            dGVProduct.Columns[6].HeaderText = "Hình ảnh";
+
             SetControls(false);
         }
         private void dGVProduct_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -74,7 +85,7 @@ namespace DoAnSimple
             txtPrice.Text = dGVProduct.Rows[e.RowIndex].Cells[4].Value.ToString();
 
             string sSql = "SELECT SUM(quantity) AS sl FROM productdate WHERE productid = @productid AND expdate >= GETDATE()";
-            int n = myDataServices.ExecuteScalar(sSql, new SqlParameter("@productid", int.Parse(txtId.Text)));
+            int n = myDataServices.ExecuteScalar(sSql, new SqlParameter("@productid", txtId.Text));
             if (n > 0)
             {
                 txtQuantity.Text = n.ToString();
@@ -272,11 +283,37 @@ namespace DoAnSimple
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Image Files (*.jpg; *.jpeg; *.png; *.gif; *.bmp)|*.jpg; *.jpeg; *.png; *.gif; *.bmp";
+
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                pictureBox.Image = new Bitmap(dlg.FileName);
-                imagePath = dlg.FileName;
+                // Kiểm tra định dạng và tồn tại của tệp ảnh
+                if (IsImageFile(dlg.FileName) && File.Exists(dlg.FileName))
+                {
+                    // Hiển thị ảnh trong PictureBox
+                    pictureBox.Image = new Bitmap(dlg.FileName);
+                    imagePath = dlg.FileName;
+                    pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+                else
+                {
+                    MessageBox.Show("Định dạng hoặc tệp ảnh không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+        }
+
+        // Phương thức kiểm tra định dạng ảnh
+        private bool IsImageFile(string filePath)
+        {
+            string[] supportedFormats = { ".jpg", ".jpeg", ".png", ".gif", ".bmp" };
+            string fileExtension = Path.GetExtension(filePath).ToLower();
+            return supportedFormats.Contains(fileExtension);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            imagePath = null;
+            pictureBox.Image = Properties.Resources.product;
         }
     }
 }
