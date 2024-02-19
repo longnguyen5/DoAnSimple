@@ -212,6 +212,14 @@ namespace DoAnSimple
             // Lưu tên sản phẩm để check trùng tên hay không
             oldSupplierName = txtName.Text;
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSearch.Text.Trim().Length == 0)
+            {
+                Display();
+            }
+        }
     }
 }
 

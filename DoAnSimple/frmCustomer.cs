@@ -205,5 +205,13 @@ namespace DoAnSimple
             // Refresh the data display
             Display();
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSearch.Text.Trim().Length == 0)
+            {
+                Display();
+            }
+        }
     }
 }

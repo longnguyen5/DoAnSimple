@@ -256,8 +256,8 @@ namespace DoAnSimple
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string sSql = "Select * from User WHERE Name LIKE '%' + @DrugName + '%'";
-            DisplaySearch(sSql, new SqlParameter("@DrugName", txtSearch.Text.Trim()));
+            string sSql = "SELECT * FROM [User] WHERE [Name] LIKE '%' + @UserName + '%'";
+            DisplaySearch(sSql, new SqlParameter("@UserName", txtSearch.Text.Trim()));
         }
         private void DisplaySearch(string sSql, params SqlParameter[] parameters)
         {
@@ -305,6 +305,14 @@ namespace DoAnSimple
         {
             imagePath = null;
             pictureBox.Image = Properties.Resources.user;
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSearch.Text.Length == 0)
+            {
+                Display();
+            }
         }
     }
 }

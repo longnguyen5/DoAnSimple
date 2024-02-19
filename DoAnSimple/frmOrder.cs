@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -350,12 +351,13 @@ namespace DoAnSimple
             cmbProductFilter.Items.Add("Tìm theo tên");
             cmbProductFilter.Items.Add("Tìm theo mã");
             cmbProductFilter.SelectedIndex = 0;
-
+            //
+            rbOption1.Checked = true;
             //hiển thị dữ liệu lên lưới
             DisplayCustomer();
             DisplayProduct();
             DisplayOrder();
-
+            DisplayAll();
             /*rbDrugName.Checked = true;
             rbCusName.Checked = true;*/
             dGVCustomer.AutoResizeColumns();
@@ -363,8 +365,13 @@ namespace DoAnSimple
             dGVOrder.AutoResizeColumns();
             int columnIndex = 6; // Thay thế bằng chỉ số cột thực tế
             int newWidth = 100; // Thay thế bằng chiều rộng mới bạn muốn đặt
-
             dGVProduct.Columns[columnIndex].Width = newWidth;
+
+            dGVOrderHistory.Columns[0].HeaderText = "Mã đơn hàng";
+            dGVOrderHistory.Columns[1].HeaderText = "Mã khách hàng";
+            dGVOrderHistory.Columns[2].HeaderText = "Ngày đặt";
+            dGVOrderHistory.Columns[3].HeaderText = "Tổng tiền";
+
             //thiết lập trạng thái các điều khiển
             SetControls(false);
         }
@@ -448,6 +455,138 @@ namespace DoAnSimple
             {
                 MessageBox.Show("Sản phẩm bạn chọn không còn hàng nữa!", "Thông báo", MessageBoxButtons.OK);
                 cmbProdId.DataSource = null;
+            }
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbOption2.Checked == true)
+            {
+                cboTime.Enabled = true;
+                label14.Enabled = false;
+                label15.Enabled = false;
+                dTPStart.Enabled = false;
+                dTPEnd.Enabled = false;
+            }
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbOption3.Checked == true)
+            {
+                cboTime.Enabled = false;
+                label14.Enabled = true;
+                label15.Enabled = true;
+                dTPStart.Enabled = true;
+                dTPEnd.Enabled = true;
+            }
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbOption1.Checked == true)
+            {
+                cboTime.Enabled = false;
+                label14.Enabled = false;
+                label15.Enabled = false;
+                dTPStart.Enabled = false;
+                dTPEnd.Enabled = false;
+            }
+        }
+
+        private void dGVOrderHistory_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            // Lay Id cua Order
+            string id = dGVOrderHistory.Rows[e.RowIndex].Cells[0].Value.ToString();
+            string sql = "Select * from [Order_details] where [id] = @id";
+            DataTable dt = myDataServices.RunQuery(sql, new SqlParameter("@id", id));
+            dataGridView1.DataSource = dt;
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            dataGridView1.Columns[0].HeaderText = "Mã đơn hàng";
+            dataGridView1.Columns[1].HeaderText = "Mã sản phẩm";
+            dataGridView1.Columns[2].HeaderText = "Mã sản xuất";
+            dataGridView1.Columns[3].HeaderText = "Số lượng";
+            dataGridView1.Columns[4].HeaderText = "Mã giảm giá";
+            dataGridView1.Columns[5].HeaderText = "Giá ban đầu";
+            dataGridView1.Columns[6].HeaderText = "Giá sau giảm";
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (rbOption1.Checked == true)
+            {
+                DisplayAll();
+            }
+            else
+            {
+                DisplayByTime();
+            }
+        }
+
+        private void DisplayAll()
+        {
+            string sql = "Select * from [Order] Order By [Date] desc";
+            DataTable dt = myDataServices.RunQuery(sql);
+            dGVOrderHistory.DataSource = dt;
+            foreach (DataGridViewColumn column in dGVOrderHistory.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+        }
+
+        private void DisplayByTime()
+        {
+            String sql;
+            DataTable dt = new DataTable();
+            if (rbOption2.Checked == true)
+            {
+                // Nam
+                if (cboTime.SelectedIndex == 0)
+                {
+                    sql = "Select * from [Order] where [Date] >= DATEADD(YEAR, -1, GETDATE());";
+                    dt = myDataServices.RunQuery(sql);
+                    dGVOrderHistory.DataSource = dt;
+                }
+                // 
+                if (cboTime.SelectedIndex == 1)
+                {
+                    sql = "Select * from [Order] where [Date] >= DATEADD(MM, DATEDIFF(MM, 0, GETDATE()), 0) " +
+                        "and [Date]< DATEADD(MM, DATEDIFF(MM, 0, GETDATE()) + 1, 0)";
+                    dt = myDataServices.RunQuery(sql);
+                    dGVOrderHistory.DataSource = dt;
+                }
+                // 
+                if (cboTime.SelectedIndex == 2)
+                {
+                    sql = "Select * from [Order] where [Date] >= DATEADD(WK, DATEDIFF(WK, 0, GETDATE()), 0)\r\n  " +
+                        "AND [Date] < DATEADD(WK, DATEDIFF(WK, 0, GETDATE()) + 1, 0);";
+                    dt = myDataServices.RunQuery(sql);
+                    dGVOrderHistory.DataSource = dt;
+                }
+                // 
+                if (cboTime.SelectedIndex == 3)
+                {
+                    sql = "Select * from [Order] WHERE [Date] >= CAST(GETDATE() AS DATE)\r\n  " +
+                        "AND [Date] < DATEADD(DAY, 1, CAST(GETDATE() AS DATE));";
+                    dt = myDataServices.RunQuery(sql);
+                    dGVOrderHistory.DataSource = dt;
+                }
+            }
+            if (rbOption3.Checked == true)
+            {
+                DateTime start = dTPStart.Value;
+                DateTime end = dTPEnd.Value;
+                sql = "Select * from [Order] WHERE [Date] Between @start and @end;";
+                dt = myDataServices.RunQuery(sql, new SqlParameter("@start", start.ToString()), new SqlParameter("@end", end.ToString()));
+                dGVOrderHistory.DataSource = dt;
             }
         }
     }

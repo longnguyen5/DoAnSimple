@@ -175,7 +175,7 @@ namespace DoAnSimple
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string sSql = "Select * from Discount WHERE Name LIKE '%' + @Name + '%'";
+            string sSql = "Select * from Category WHERE [Name] LIKE '%' + @Name + '%'";
             DisplaySearch(sSql, new SqlParameter("@Name", txtSearch.Text.Trim()));
         }
 
@@ -202,6 +202,14 @@ namespace DoAnSimple
             foreach (DataGridViewColumn column in dGVCategory.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSearch.Text.Trim().Length == 0)
+            {
+                Display();
             }
         }
     }

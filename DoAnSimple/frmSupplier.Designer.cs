@@ -61,9 +61,9 @@
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnSearch.Location = new System.Drawing.Point(666, 12);
+            this.btnSearch.Location = new System.Drawing.Point(632, 12);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(61, 26);
+            this.btnSearch.Size = new System.Drawing.Size(95, 32);
             this.btnSearch.TabIndex = 15;
             this.btnSearch.Text = "Tìm";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -114,9 +114,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.dGVSupplier);
             this.groupBox4.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(496, 134);
+            this.groupBox4.Location = new System.Drawing.Point(496, 159);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(745, 580);
+            this.groupBox4.Size = new System.Drawing.Size(745, 555);
             this.groupBox4.TabIndex = 18;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Dữ liệu";
@@ -135,7 +135,7 @@
             this.dGVSupplier.Name = "dGVSupplier";
             this.dGVSupplier.RowHeadersWidth = 51;
             this.dGVSupplier.RowTemplate.Height = 24;
-            this.dGVSupplier.Size = new System.Drawing.Size(733, 541);
+            this.dGVSupplier.Size = new System.Drawing.Size(733, 516);
             this.dGVSupplier.TabIndex = 0;
             this.dGVSupplier.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGVSupplier_RowEnter);
             // 
@@ -277,7 +277,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(496, 57);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(745, 74);
+            this.groupBox3.Size = new System.Drawing.Size(745, 96);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tìm kiếm";
@@ -286,9 +286,9 @@
             // 
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnRefresh.Location = new System.Drawing.Point(666, 42);
+            this.btnRefresh.Location = new System.Drawing.Point(632, 48);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(61, 26);
+            this.btnRefresh.Size = new System.Drawing.Size(95, 36);
             this.btnRefresh.TabIndex = 19;
             this.btnRefresh.Text = "Làm mới";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -300,8 +300,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Location = new System.Drawing.Point(68, 14);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(592, 26);
+            this.txtSearch.Size = new System.Drawing.Size(558, 26);
             this.txtSearch.TabIndex = 14;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // frmSupplier
             // 

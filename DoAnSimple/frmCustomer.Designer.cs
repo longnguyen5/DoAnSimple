@@ -73,6 +73,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(537, 26);
             this.txtSearch.TabIndex = 14;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // groupBox3
             // 
@@ -155,7 +156,7 @@
             // 
             this.txtContact.Location = new System.Drawing.Point(152, 127);
             this.txtContact.Name = "txtContact";
-            this.txtContact.Size = new System.Drawing.Size(376, 26);
+            this.txtContact.Size = new System.Drawing.Size(168, 26);
             this.txtContact.TabIndex = 11;
             // 
             // label3
@@ -208,7 +209,7 @@
             // 
             this.txtName.Location = new System.Drawing.Point(152, 63);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(376, 26);
+            this.txtName.Size = new System.Drawing.Size(265, 26);
             this.txtName.TabIndex = 6;
             // 
             // label6

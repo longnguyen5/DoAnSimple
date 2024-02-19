@@ -315,5 +315,13 @@ namespace DoAnSimple
             imagePath = null;
             pictureBox.Image = Properties.Resources.product;
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSearch.Text.Trim().Length == 0)
+            {
+                Display();
+            }
+        }
     }
 }
