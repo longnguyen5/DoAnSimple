@@ -39,11 +39,11 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(188, 290);
+            this.btnLogin.Font = new System.Drawing.Font("Roboto Condensed", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Location = new System.Drawing.Point(411, 280);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(430, 72);
+            this.btnLogin.Size = new System.Drawing.Size(186, 45);
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -52,7 +52,7 @@
             // txtUsername
             // 
             this.txtUsername.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(188, 107);
+            this.txtUsername.Location = new System.Drawing.Point(168, 135);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(429, 32);
@@ -62,7 +62,7 @@
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(188, 203);
+            this.txtPassword.Location = new System.Drawing.Point(169, 207);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(429, 32);
@@ -73,11 +73,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(184, 78);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(164, 106);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 24);
+            this.label1.Size = new System.Drawing.Size(99, 28);
             this.label1.TabIndex = 3;
             this.label1.Text = "Tài khoản";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -85,11 +85,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Roboto Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(184, 174);
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(165, 178);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 24);
+            this.label2.Size = new System.Drawing.Size(98, 28);
             this.label2.TabIndex = 4;
             this.label2.Text = "Mật khẩu";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -97,11 +97,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Roboto Condensed", 15F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(325, 27);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(305, 55);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 30);
+            this.label3.Size = new System.Drawing.Size(142, 35);
             this.label3.TabIndex = 5;
             this.label3.Text = "Đăng nhập";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -109,9 +109,10 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(469, 242);
+            this.checkBox1.Font = new System.Drawing.Font("Segoe UI Semilight", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(458, 246);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(148, 28);
+            this.checkBox1.Size = new System.Drawing.Size(139, 27);
             this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "Hiện mật khẩu";
             this.checkBox1.UseVisualStyleBackColor = true;

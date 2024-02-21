@@ -34,20 +34,18 @@
             this.btnCustomer = new System.Windows.Forms.Button();
             this.btnOrder = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnLogOut = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panelChildForm = new System.Windows.Forms.Panel();
-            this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnProduct
             // 
             this.btnProduct.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProduct.Location = new System.Drawing.Point(19, 21);
+            this.btnProduct.Location = new System.Drawing.Point(36, 29);
             this.btnProduct.Name = "btnProduct";
             this.btnProduct.Size = new System.Drawing.Size(177, 49);
             this.btnProduct.TabIndex = 0;
@@ -58,7 +56,7 @@
             // btnCategory
             // 
             this.btnCategory.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCategory.Location = new System.Drawing.Point(19, 82);
+            this.btnCategory.Location = new System.Drawing.Point(36, 90);
             this.btnCategory.Name = "btnCategory";
             this.btnCategory.Size = new System.Drawing.Size(177, 49);
             this.btnCategory.TabIndex = 1;
@@ -69,7 +67,7 @@
             // btnSupplier
             // 
             this.btnSupplier.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSupplier.Location = new System.Drawing.Point(19, 143);
+            this.btnSupplier.Location = new System.Drawing.Point(36, 151);
             this.btnSupplier.Name = "btnSupplier";
             this.btnSupplier.Size = new System.Drawing.Size(177, 49);
             this.btnSupplier.TabIndex = 2;
@@ -80,7 +78,7 @@
             // btnCustomer
             // 
             this.btnCustomer.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustomer.Location = new System.Drawing.Point(19, 326);
+            this.btnCustomer.Location = new System.Drawing.Point(36, 334);
             this.btnCustomer.Name = "btnCustomer";
             this.btnCustomer.Size = new System.Drawing.Size(177, 49);
             this.btnCustomer.TabIndex = 5;
@@ -91,7 +89,7 @@
             // btnOrder
             // 
             this.btnOrder.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrder.Location = new System.Drawing.Point(19, 265);
+            this.btnOrder.Location = new System.Drawing.Point(36, 273);
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Size = new System.Drawing.Size(177, 49);
             this.btnOrder.TabIndex = 4;
@@ -102,7 +100,7 @@
             // btnImport
             // 
             this.btnImport.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImport.Location = new System.Drawing.Point(19, 204);
+            this.btnImport.Location = new System.Drawing.Point(36, 212);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(177, 49);
             this.btnImport.TabIndex = 3;
@@ -110,82 +108,48 @@
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.btnLogOut);
-            this.groupBox1.Controls.Add(this.btnProduct);
-            this.groupBox1.Controls.Add(this.btnCustomer);
-            this.groupBox1.Controls.Add(this.btnCategory);
-            this.groupBox1.Controls.Add(this.btnOrder);
-            this.groupBox1.Controls.Add(this.btnSupplier);
-            this.groupBox1.Controls.Add(this.btnImport);
-            this.groupBox1.Location = new System.Drawing.Point(13, 75);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(214, 882);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Chức năng";
-            // 
-            // btnLogOut
-            // 
-            this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLogOut.Font = new System.Drawing.Font("Roboto Condensed", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogOut.Location = new System.Drawing.Point(19, 817);
-            this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(177, 39);
-            this.btnLogOut.TabIndex = 7;
-            this.btnLogOut.Text = "Đăng xuất";
-            this.btnLogOut.UseVisualStyleBackColor = true;
-            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Location = new System.Drawing.Point(13, 9);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1873, 60);
-            this.groupBox3.TabIndex = 8;
-            this.groupBox3.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1760, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Nhân viên";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label1.Font = new System.Drawing.Font("Roboto", 12F);
-            this.label1.Location = new System.Drawing.Point(19, 18);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Black", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 26);
+            this.label1.Size = new System.Drawing.Size(138, 38);
             this.label1.TabIndex = 0;
             this.label1.Text = "Zin Mart";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1902, 69);
+            this.panel1.TabIndex = 10;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnProduct);
+            this.panel2.Controls.Add(this.btnOrder);
+            this.panel2.Controls.Add(this.btnCustomer);
+            this.panel2.Controls.Add(this.btnSupplier);
+            this.panel2.Controls.Add(this.btnImport);
+            this.panel2.Controls.Add(this.btnCategory);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 69);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(248, 904);
+            this.panel2.TabIndex = 11;
+            // 
             // panelChildForm
             // 
-            this.panelChildForm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelChildForm.Location = new System.Drawing.Point(242, 83);
+            this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelChildForm.Location = new System.Drawing.Point(248, 69);
             this.panelChildForm.Name = "panelChildForm";
-            this.panelChildForm.Size = new System.Drawing.Size(1644, 874);
-            this.panelChildForm.TabIndex = 9;
+            this.panelChildForm.Size = new System.Drawing.Size(1654, 904);
+            this.panelChildForm.TabIndex = 12;
             // 
             // Main
             // 
@@ -193,15 +157,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1902, 973);
             this.Controls.Add(this.panelChildForm);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Name = "Main";
             this.Text = "Nhân viên";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Main_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -214,12 +178,10 @@
         private System.Windows.Forms.Button btnCustomer;
         private System.Windows.Forms.Button btnOrder;
         private System.Windows.Forms.Button btnImport;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnLogOut;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panelChildForm;
-        private System.Windows.Forms.Label label2;
     }
 }
 
