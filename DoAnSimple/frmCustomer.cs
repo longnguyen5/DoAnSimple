@@ -44,8 +44,8 @@ namespace DoAnSimple
             Display();
             // Thiết lập trạng thái các điều khiển
             dGVCustomer.AutoResizeColumns();
-            dGVCustomer.Columns[0].HeaderText = "ID";
-            dGVCustomer.Columns[1].HeaderText = "Tên khách hàng";
+            dGVCustomer.Columns[0].HeaderText = "ID Khách hàng";
+            dGVCustomer.Columns[1].HeaderText = "Họ và tên";
             dGVCustomer.Columns[2].HeaderText = "Ngày sinh";
             dGVCustomer.Columns[3].HeaderText = "Địa chỉ";
             dGVCustomer.Columns[4].HeaderText = "Số điện thoại";
@@ -127,7 +127,7 @@ namespace DoAnSimple
             oldPhone = txtContact.Text;
 
             // Hiện lịch sử mua hàng của khách hàng lên dgvBuyHistory
-            string sql = "Select o.id, o.[date], p.[name], od.prodid, od.quantity \r\n" +
+            string sql = "Select o.id, o.[date], p.[name], od.prodid, od.quantity, od.price, od.discountId, od.cost \r\n" +
                 "from Customer c \r\n" +
                 "join [Order] o on c.Id = o.CustomerId" +
                 "\r\njoin Order_details od on od.Id = o.Id " +
@@ -141,6 +141,13 @@ namespace DoAnSimple
             dGVBuyHistory.Columns[2].HeaderText = "Tên sản phẩm";
             dGVBuyHistory.Columns[3].HeaderText = "Mã sản xuất";
             dGVBuyHistory.Columns[4].HeaderText = "Số lượng";
+            dGVBuyHistory.Columns[5].HeaderText = "Giá SP";
+            dGVBuyHistory.Columns[6].HeaderText = "Giảm giá";
+            dGVBuyHistory.Columns[7].HeaderText = "Thành tiền";
+            foreach (DataGridViewColumn column in dGVBuyHistory.Columns)
+            {
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)

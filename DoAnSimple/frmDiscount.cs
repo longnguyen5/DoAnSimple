@@ -89,6 +89,7 @@ namespace DoAnSimple
             SetControls(true);
             txtId.Clear();
             txtName.Clear();
+            txtDiscount.Clear();
             txtDescription.Clear();
             txtName.Focus();
         }

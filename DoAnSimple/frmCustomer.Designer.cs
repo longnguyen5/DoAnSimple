@@ -69,6 +69,7 @@
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.BackColor = System.Drawing.Color.White;
             this.txtSearch.Location = new System.Drawing.Point(68, 20);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(537, 26);
@@ -79,6 +80,7 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox3.Controls.Add(this.btnRefresh);
             this.groupBox3.Controls.Add(this.txtSearch);
             this.groupBox3.Controls.Add(this.btnSearch);
@@ -105,17 +107,19 @@
             // btnSearch
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.BackColor = System.Drawing.SystemColors.Control;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSearch.Location = new System.Drawing.Point(611, 12);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(77, 40);
             this.btnSearch.TabIndex = 15;
             this.btnSearch.Text = "Tìm";
-            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.UseVisualStyleBackColor = false;
             // 
             // txtId
             // 
             this.txtId.Enabled = false;
+            this.txtId.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtId.Location = new System.Drawing.Point(152, 31);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
@@ -154,6 +158,8 @@
             // 
             // txtContact
             // 
+            this.txtContact.BackColor = System.Drawing.SystemColors.Control;
+            this.txtContact.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtContact.Location = new System.Drawing.Point(152, 127);
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(168, 26);
@@ -207,6 +213,8 @@
             // 
             // txtName
             // 
+            this.txtName.BackColor = System.Drawing.SystemColors.Control;
+            this.txtName.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.Location = new System.Drawing.Point(152, 63);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(265, 26);
@@ -224,6 +232,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.dateDOB);
             this.groupBox1.Controls.Add(this.cmbGender);
             this.groupBox1.Controls.Add(this.label7);
@@ -236,7 +245,7 @@
             this.groupBox1.Controls.Add(this.txtName);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(17, 57);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(534, 363);
@@ -246,6 +255,8 @@
             // 
             // dateDOB
             // 
+            this.dateDOB.CalendarFont = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateDOB.CalendarMonthBackground = System.Drawing.SystemColors.Control;
             this.dateDOB.Location = new System.Drawing.Point(152, 159);
             this.dateDOB.Name = "dateDOB";
             this.dateDOB.Size = new System.Drawing.Size(265, 26);
@@ -253,6 +264,8 @@
             // 
             // cmbGender
             // 
+            this.cmbGender.BackColor = System.Drawing.SystemColors.Control;
+            this.cmbGender.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbGender.FormattingEnabled = true;
             this.cmbGender.Location = new System.Drawing.Point(152, 95);
             this.cmbGender.Name = "cmbGender";
@@ -271,10 +284,12 @@
             // 
             // txtAddress
             // 
+            this.txtAddress.BackColor = System.Drawing.SystemColors.Control;
+            this.txtAddress.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddress.Location = new System.Drawing.Point(152, 191);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(376, 96);
+            this.txtAddress.Size = new System.Drawing.Size(376, 146);
             this.txtAddress.TabIndex = 15;
             // 
             // label5
