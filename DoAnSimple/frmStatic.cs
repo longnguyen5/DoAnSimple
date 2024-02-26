@@ -359,6 +359,24 @@ namespace DoAnSimple
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
+            dGVProductIn.Columns[0].HeaderText = "Mã SP";
+            dGVProductIn.Columns[1].HeaderText = "Tên SP";
+            dGVProductIn.Columns[2].HeaderText = "SL nhập";
+            dGVProductIn.Columns[3].HeaderText = "Thành tiền";
+            dGVProductOut.Columns[0].HeaderText = "Mã SP";
+            dGVProductOut.Columns[1].HeaderText = "Tên SP";
+            dGVProductOut.Columns[2].HeaderText = "SL bán";
+            dGVProductOut.Columns[3].HeaderText = "Thành tiền";
+            dataGridView1.Columns[0].HeaderText = "Mã SP";
+            dataGridView1.Columns[1].HeaderText = "Tên SP";
+            dataGridView1.Columns[2].HeaderText = "Số lượng";
+            dataGridView2.Columns[0].HeaderText = "Mã SP";
+            dataGridView2.Columns[1].HeaderText = "Tên SP";
+            dataGridView2.Columns[2].HeaderText = "Số lượng";
+            dataGridView3.Columns[0].HeaderText = "Mã SP";
+            dataGridView3.Columns[1].HeaderText = "Tên SP";
+            dataGridView3.Columns[2].HeaderText = "Số lượng";
+
         }
         private void Display()
         {
