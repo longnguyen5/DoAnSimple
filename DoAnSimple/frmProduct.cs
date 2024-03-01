@@ -1,4 +1,4 @@
-﻿using DrugStoreManagement;
+﻿using DoAnSimple;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -57,12 +57,6 @@ namespace DoAnSimple
             Display();
             // Thiết lập trạng thái các điều khiển
 
-            dGVProduct.Columns["Name"].Width = 200;
-            dGVProduct.Columns["Price"].Width = 40;
-
-            dGVProduct.Columns["CategoryId"].Width = 40;
-            dGVProduct.Columns["SupplierId"].Width = 40;
-            dGVProduct.Columns["Id"].Width = 20;
 
             dGVProduct.Columns[1].HeaderText = "Tên sản phẩm";
             dGVProduct.Columns[2].HeaderText = "Mã phân loại";
@@ -321,6 +315,20 @@ namespace DoAnSimple
             if (txtSearch.Text.Trim().Length == 0)
             {
                 Display();
+            }
+        }
+
+        private void dGVProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtPrice.Text.Replace(",", ""), out decimal amount))
+            {
+                txtPrice.Text = string.Format("{0:#,0}", amount);
+                txtPrice.SelectionStart = txtPrice.Text.Length;
             }
         }
     }

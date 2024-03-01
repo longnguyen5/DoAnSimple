@@ -1,4 +1,4 @@
-﻿using DrugStoreManagement;
+﻿using DoAnSimple;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,11 +36,11 @@ namespace DoAnSimple
             }
             // Các comboBox
             cmbProductFilter.Items.Add("Tìm theo tên");
-            cmbProductFilter.Items.Add("Tìm theo mã");
+            cmbProductFilter.Items.Add("Tìm theo mã sản phẩm");
             cmbProductFilter.SelectedIndex = 0;
 
             cmbSupplierFilter.Items.Add("Tìm theo tên");
-            cmbSupplierFilter.Items.Add("Tìm theo mã");
+            cmbSupplierFilter.Items.Add("Tìm theo mã nhà cung cấp");
             cmbSupplierFilter.SelectedIndex = 0;
 
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
@@ -56,6 +56,20 @@ namespace DoAnSimple
             DisplayProduct();
             DisplayCustomer();
             DisplayImport();
+
+            dGVSupplier.Columns[0].HeaderText = "Id NCC";
+            dGVSupplier.Columns[1].HeaderText = "Tên NCC";
+            dGVSupplier.Columns[2].HeaderText = "Số liên hệ";
+            dGVSupplier.Columns[3].HeaderText = "Địa chỉ";
+
+            dGVProduct.Columns[0].HeaderText = "Id SP";
+            dGVProduct.Columns[1].HeaderText = "Tên SP";
+            dGVProduct.Columns[2].HeaderText = "Loại SP";
+            dGVProduct.Columns[3].HeaderText = "NCC";
+            dGVProduct.Columns[4].HeaderText = "Giá SP";
+            dGVProduct.Columns[5].HeaderText = "Mô tả SP";
+            dGVProduct.Columns[6].HeaderText = "Đường dẫn hình ảnh";
+
             SetControls(false);
         }
         private void DisplayImport()
@@ -74,6 +88,15 @@ namespace DoAnSimple
             dGVImport.DataSource = dtImport;
             dGVImport.Columns[5].DefaultCellStyle.Format = "yyyy-MM-dd";
             dGVImport.Columns[6].DefaultCellStyle.Format = "yyyy-MM-dd";
+
+            dGVImport.Columns[0].HeaderText = "Id SP";
+            dGVImport.Columns[1].HeaderText = "Mã SX";
+            dGVImport.Columns[2].HeaderText = "Tên SP";
+            dGVImport.Columns[3].HeaderText = "SL Nhập";
+            dGVImport.Columns[4].HeaderText = "Giá từng SP";
+            dGVImport.Columns[5].HeaderText = "NSX";
+            dGVImport.Columns[6].HeaderText = "HSD";
+
         }
         private void DisplayCustomer()
         {
@@ -90,10 +113,10 @@ namespace DoAnSimple
             string sSql = "Select * from [Product]";
             DataTable dtProduct = myDataServices.RunQuery(sSql);
             dGVProduct.DataSource = dtProduct;
-            foreach (DataGridViewColumn column in dGVProduct.Columns)
-            {
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            }
+            //foreach (DataGridViewColumn column in dGVProduct.Columns)
+            //{
+            //    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //}
         }
 
         private void btnSupplierSearch_Click(object sender, EventArgs e)
@@ -151,7 +174,7 @@ namespace DoAnSimple
             txtContact.Enabled = edit;
             txtProductName.Enabled = edit;
             txtProductId.Enabled = edit;
-            txtQuantity.Enabled = edit;
+            txtPrice.Enabled = edit;
             textBox1.Enabled = edit;
             txtPrice.Enabled = edit;
             txtTotal.Enabled = edit;
@@ -170,7 +193,7 @@ namespace DoAnSimple
             txtProductId.Clear();
             textBox1.Clear();
             txtProductName.Clear();
-            txtQuantity.Clear();
+            txtPrice.Clear();
             txtPrice.Clear();
             txtTotal.Clear();
             if (dtImport != null)
@@ -211,7 +234,7 @@ namespace DoAnSimple
                 dataRow["ProdId"] = textBox1.Text;
                 dataRow["Name"] = txtProductName.Text;
                 dataRow["ProdId"] = textBox1.Text;
-                dataRow["Quantity"] = txtQuantity.Text;
+                dataRow["Quantity"] = txtPrice.Text;
                 dataRow["Price"] = txtPrice.Text;
                 DateTime dt1 = dateTimePicker1.Value.Date;
                 DateTime dt2 = dateTimePicker2.Value.Date;
@@ -293,6 +316,29 @@ namespace DoAnSimple
                 MessageBox.Show("Không có dữ liệu để lưu.");
             }
             SetControls(false);
+        }
+
+        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtTotal_TextChanged(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtTotal.Text.Replace(",", ""), out decimal amount))
+            {
+                txtTotal.Text = string.Format("{0:#,0}", amount);
+                txtTotal.SelectionStart = txtTotal.Text.Length;
+            }
+        }
+
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtPrice.Text.Replace(",", ""), out decimal amount))
+            {
+                txtPrice.Text = string.Format("{0:#,0}", amount);
+                txtPrice.SelectionStart = txtPrice.Text.Length;
+            }
         }
     }
 }

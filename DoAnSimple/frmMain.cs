@@ -1,4 +1,4 @@
-﻿using DrugStoreManagement;
+﻿using DoAnSimple;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

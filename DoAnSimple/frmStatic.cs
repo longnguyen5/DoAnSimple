@@ -1,4 +1,4 @@
-﻿using DrugStoreManagement;
+﻿using DoAnSimple;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -328,11 +328,11 @@ namespace DoAnSimple
             dataGridView1.DataSource = dt1;
 
             // Lấy sản phẩm có ngày hết hạn trong vòng 1 tháng kể từ ngày hiện tại
-            string sql2 = "SELECT p.id, p.name, SUM(pd.quantity) AS total_quantity " +
+            string sql2 = "SELECT p.id, p.name, pd.ExpDate, SUM(pd.quantity) AS total_quantity " +
                            "FROM product p " +
                            "JOIN productdate pd ON p.id = pd.productid " +
                            "WHERE pd.expDate BETWEEN GETDATE() AND DATEADD(MONTH, 1, GETDATE()) " +
-                           "GROUP BY p.id, p.name " +
+                           "GROUP BY p.id, p.name, pd.ExpDate " +
                            "ORDER BY p.id DESC";
 
             DataTable dt2 = myDataServices.RunQuery(sql2);
@@ -363,16 +363,21 @@ namespace DoAnSimple
             dGVProductIn.Columns[1].HeaderText = "Tên SP";
             dGVProductIn.Columns[2].HeaderText = "SL nhập";
             dGVProductIn.Columns[3].HeaderText = "Thành tiền";
+
             dGVProductOut.Columns[0].HeaderText = "Mã SP";
             dGVProductOut.Columns[1].HeaderText = "Tên SP";
             dGVProductOut.Columns[2].HeaderText = "SL bán";
             dGVProductOut.Columns[3].HeaderText = "Thành tiền";
+
             dataGridView1.Columns[0].HeaderText = "Mã SP";
             dataGridView1.Columns[1].HeaderText = "Tên SP";
             dataGridView1.Columns[2].HeaderText = "Số lượng";
+
             dataGridView2.Columns[0].HeaderText = "Mã SP";
             dataGridView2.Columns[1].HeaderText = "Tên SP";
-            dataGridView2.Columns[2].HeaderText = "Số lượng";
+            dataGridView2.Columns[2].HeaderText = "HSD";
+            dataGridView2.Columns[3].HeaderText = "Số lượng";
+
             dataGridView3.Columns[0].HeaderText = "Mã SP";
             dataGridView3.Columns[1].HeaderText = "Tên SP";
             dataGridView3.Columns[2].HeaderText = "Số lượng";

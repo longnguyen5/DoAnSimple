@@ -1,4 +1,4 @@
-﻿using DrugStoreManagement;
+﻿using DoAnSimple;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,6 +44,9 @@ namespace DoAnSimple
             Display();
             // Thiết lập trạng thái các điều khiển
             dGVCategory.AutoResizeColumns();
+            dGVCategory.Columns[1].HeaderText = "Tên";
+            dGVCategory.Columns[2].HeaderText = "Giảm %";
+            dGVCategory.Columns[3].HeaderText = "Mô tả thêm";
             SetControls(false);
         }
         private void dGVCategory_RowEnter(object sender, DataGridViewCellEventArgs e)

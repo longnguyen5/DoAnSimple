@@ -1,4 +1,4 @@
-﻿using DrugStoreManagement;
+﻿using DoAnSimple;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,9 +44,8 @@ namespace DoAnSimple
             Display();
             // Thiết lập trạng thái các điều khiển
             dGVCategory.AutoResizeColumns();
-            dGVCategory.Columns["Name"].Width = 70;
             dGVCategory.Columns[0].HeaderText = "ID";
-            dGVCategory.Columns[1].HeaderText = "Tên phân loại";
+            dGVCategory.Columns[1].HeaderText = "Tên loại sản phẩm";
             dGVCategory.Columns[2].HeaderText = "Mô tả thêm của phân loại";
             SetControls(false);
         }
@@ -137,7 +136,7 @@ namespace DoAnSimple
             }
 
             string sSql;
-            // 2. Kiểm tra có trùng tên sản phẩm hay không
+            // 2. Kiểm tra có trùng tên loại sản phẩm hay không
             if (modeNew || (!modeNew && txtName.Text.Trim() != oldCategoryName.Trim()))
             {
                 sSql = "Select * From [Category] Where [Name] = @Name";

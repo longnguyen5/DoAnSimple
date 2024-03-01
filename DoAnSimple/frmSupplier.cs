@@ -1,4 +1,4 @@
-﻿using DrugStoreManagement;
+﻿using DoAnSimple;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,8 +42,11 @@ namespace DoAnSimple
             Display();
             // Thiết lập trạng thái các điều khiển
             /* dGVSupplier.AutoResizeColumns();*/
-            dGVSupplier.Columns["Id"].Width = 20;
-            dGVSupplier.Columns["Contact"].Width = 50;
+
+            dGVSupplier.Columns[0].HeaderText = "ID NCC";
+            dGVSupplier.Columns[1].HeaderText = "Tên NCC";
+            dGVSupplier.Columns[2].HeaderText = "Số liên hệ";
+            dGVSupplier.Columns[3].HeaderText = "Địa chỉ";
             SetControls(false);
         }
         private void Display()

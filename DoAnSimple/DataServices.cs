@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace DrugStoreManagement
+namespace DoAnSimple
 {
     class DataServices
     {

@@ -1,4 +1,4 @@
-﻿using DrugStoreManagement;
+﻿using DoAnSimple;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -367,6 +367,19 @@ namespace DoAnSimple
             int newWidth = 100; // Thay thế bằng chiều rộng mới bạn muốn đặt
             dGVProduct.Columns[columnIndex].Width = newWidth;
 
+            dGVCustomer.Columns[0].HeaderText = "Id";
+            dGVCustomer.Columns[1].HeaderText = "Tên";
+            dGVCustomer.Columns[2].HeaderText = "Ngày sinh";
+            dGVCustomer.Columns[3].HeaderText = "Địa chỉ";
+            dGVCustomer.Columns[4].HeaderText = "Số điện thoại";
+            dGVCustomer.Columns[5].HeaderText = "Giới tính";
+
+            dGVProduct.Columns[0].HeaderText = "Id";
+            dGVProduct.Columns[1].HeaderText = "Tên";
+            dGVProduct.Columns[2].HeaderText = "Id loại SP";
+            dGVProduct.Columns[3].HeaderText = "Id NCC";
+            dGVProduct.Columns[4].HeaderText = "Giá";
+
             dGVOrderHistory.Columns[0].HeaderText = "Mã đơn hàng";
             dGVOrderHistory.Columns[1].HeaderText = "Mã khách hàng";
             dGVOrderHistory.Columns[2].HeaderText = "Ngày đặt";
@@ -390,10 +403,10 @@ namespace DoAnSimple
             string sSql = "Select * from [Product]";
             DataTable dtOrder = myDataServices.RunQuery(sSql);
             dGVProduct.DataSource = dtOrder;
-            foreach (DataGridViewColumn column in dGVProduct.Columns)
-            {
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            }
+            //foreach (DataGridViewColumn column in dGVProduct.Columns)
+            //{
+            //    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //}
         }
         private void DisplayOrder()
         {
@@ -516,7 +529,7 @@ namespace DoAnSimple
             dataGridView1.Columns[3].HeaderText = "Số lượng";
             dataGridView1.Columns[4].HeaderText = "Mã giảm giá";
             dataGridView1.Columns[5].HeaderText = "Giá ban đầu";
-            dataGridView1.Columns[6].HeaderText = "Giá sau giảm";
+            dataGridView1.Columns[6].HeaderText = "Thành tiền";
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -587,6 +600,15 @@ namespace DoAnSimple
                 sql = "Select * from [Order] WHERE [Date] Between @start and @end;";
                 dt = myDataServices.RunQuery(sql, new SqlParameter("@start", start.ToString()), new SqlParameter("@end", end.ToString()));
                 dGVOrderHistory.DataSource = dt;
+            }
+        }
+
+        private void txtTotal_TextChanged(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtTotal.Text.Replace(",", ""), out decimal amount))
+            {
+                txtTotal.Text = string.Format("{0:#,0}", amount);
+                txtTotal.SelectionStart = txtTotal.Text.Length;
             }
         }
     }
