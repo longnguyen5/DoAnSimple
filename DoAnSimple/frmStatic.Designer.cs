@@ -211,6 +211,7 @@
             // 
             this.txtTotalNumberOut.Location = new System.Drawing.Point(283, 96);
             this.txtTotalNumberOut.Name = "txtTotalNumberOut";
+            this.txtTotalNumberOut.ReadOnly = true;
             this.txtTotalNumberOut.Size = new System.Drawing.Size(100, 26);
             this.txtTotalNumberOut.TabIndex = 14;
             // 
@@ -236,9 +237,11 @@
             // 
             this.txtTotalOut.Location = new System.Drawing.Point(550, 96);
             this.txtTotalOut.Name = "txtTotalOut";
+            this.txtTotalOut.ReadOnly = true;
             this.txtTotalOut.Size = new System.Drawing.Size(100, 26);
             this.txtTotalOut.TabIndex = 16;
             this.txtTotalOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTotalOut.TextChanged += new System.EventHandler(this.txtTotalOut_TextChanged);
             // 
             // label4
             // 
@@ -301,9 +304,11 @@
             // 
             this.txtTotalIn.Location = new System.Drawing.Point(550, 68);
             this.txtTotalIn.Name = "txtTotalIn";
+            this.txtTotalIn.ReadOnly = true;
             this.txtTotalIn.Size = new System.Drawing.Size(100, 26);
             this.txtTotalIn.TabIndex = 16;
             this.txtTotalIn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTotalIn.TextChanged += new System.EventHandler(this.txtTotalIn_TextChanged);
             // 
             // label8
             // 
@@ -318,6 +323,7 @@
             // 
             this.txtTotalNumberIn.Location = new System.Drawing.Point(283, 68);
             this.txtTotalNumberIn.Name = "txtTotalNumberIn";
+            this.txtTotalNumberIn.ReadOnly = true;
             this.txtTotalNumberIn.Size = new System.Drawing.Size(100, 26);
             this.txtTotalNumberIn.TabIndex = 14;
             // 

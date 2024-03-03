@@ -252,6 +252,7 @@ namespace DoAnSimple
 
             return dtInvoiceDetails;
         }
+        // Xuat hoa don o dang txt
         private string GenerateInvoiceContent(int orderId)
         {
             // Lấy ngày hôm nay
@@ -267,7 +268,7 @@ namespace DoAnSimple
             // Thêm tiêu đề danh sách mua hàng
             invoiceContent += "Danh sách mua hàng:\n";
             invoiceContent += "---------------------------------------------------\n";
-            invoiceContent += "Tên SP\t\t||SL\t||Mã SX\t\t||Giá tiền\n";
+            invoiceContent += "Tên SP\t\t\t||SL\t||Mã SX\t\t||Giá tiền\n";
             invoiceContent += "---------------------------------------------------\n";
 
             // Lấy chi tiết hóa đơn (sản phẩm)
@@ -280,16 +281,30 @@ namespace DoAnSimple
                 int quantity = Convert.ToInt32(row["Quantity"]);
                 decimal cost = Convert.ToDecimal(row["Cost"]);
 
-                // Thêm dòng cho từng sản phẩm
-                invoiceContent += $"{productName}\t||{quantity}\t||{prodid}\t||{cost:F2}VND\n";
+                // Kiểm tra độ dài của Tên SP
+                if (productName.Length > 25)
+                {
+                    // Xuống dòng khi Tên SP có độ dài lớn hơn 25
+                    invoiceContent += $"{productName}\n\t\t\t\t||{quantity}\t||{prodid}\t||{cost:F2}VNĐ\n";
+                }
+                else
+                {
+                    // Tính toán số lượng khoảng trắng cần thêm để cân chỉnh cột
+                    int paddingLength = 25 - productName.Length;
+                    string padding = new string(' ', paddingLength);
+
+                    // Thêm dòng cho từng sản phẩm
+                    invoiceContent += $"{productName}{padding}||{quantity}\t||{prodid}\t||{cost:F2}VNĐ\n";
+                }
             }
+
 
             // Thêm đường kẻ cuối cùng của danh sách mua hàng
             invoiceContent += "---------------------------------------------------\n";
 
             // Tính tổng cộng
             decimal total = dtInvoiceDetails.AsEnumerable().Sum(row => Convert.ToDecimal(row["Cost"]));
-            invoiceContent += $"Tổng cộng: {total:F2}VND";
+            invoiceContent += $"Tổng cộng: {total:F2}VNĐ";
 
             return invoiceContent;
         }
@@ -544,6 +559,7 @@ namespace DoAnSimple
             }
         }
 
+        // dgvOrderHistory
         private void DisplayAll()
         {
             string sql = "Select * from [Order] Order By [Date] desc";
@@ -568,7 +584,7 @@ namespace DoAnSimple
                     dt = myDataServices.RunQuery(sql);
                     dGVOrderHistory.DataSource = dt;
                 }
-                // 
+                // Thang
                 if (cboTime.SelectedIndex == 1)
                 {
                     sql = "Select * from [Order] where [Date] >= DATEADD(MM, DATEDIFF(MM, 0, GETDATE()), 0) " +
@@ -576,7 +592,7 @@ namespace DoAnSimple
                     dt = myDataServices.RunQuery(sql);
                     dGVOrderHistory.DataSource = dt;
                 }
-                // 
+                // Tuan
                 if (cboTime.SelectedIndex == 2)
                 {
                     sql = "Select * from [Order] where [Date] >= DATEADD(WK, DATEDIFF(WK, 0, GETDATE()), 0)\r\n  " +
@@ -584,7 +600,7 @@ namespace DoAnSimple
                     dt = myDataServices.RunQuery(sql);
                     dGVOrderHistory.DataSource = dt;
                 }
-                // 
+                // Ngay
                 if (cboTime.SelectedIndex == 3)
                 {
                     sql = "Select * from [Order] WHERE [Date] >= CAST(GETDATE() AS DATE)\r\n  " +
@@ -593,6 +609,7 @@ namespace DoAnSimple
                     dGVOrderHistory.DataSource = dt;
                 }
             }
+            // Start + End
             if (rbOption3.Checked == true)
             {
                 DateTime start = dTPStart.Value;
@@ -609,6 +626,22 @@ namespace DoAnSimple
             {
                 txtTotal.Text = string.Format("{0:#,0}", amount);
                 txtTotal.SelectionStart = txtTotal.Text.Length;
+            }
+        }
+
+        private void txtCustomerSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCustomerSearch.Text.Trim().Length == 0)
+            {
+                DisplayCustomer();
+            }
+        }
+
+        private void txtProductSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (txtProductSearch.Text.Trim().Length == 0)
+            {
+                DisplayProduct();
             }
         }
     }

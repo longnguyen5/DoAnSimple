@@ -23,8 +23,6 @@ namespace DoAnSimple
         // 4. khai báo biến để kiểm tra trùng tên thuốc
         private string oldPhone;
 
-
-
         public frmCustomer()
         {
             InitializeComponent();

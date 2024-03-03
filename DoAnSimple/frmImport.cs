@@ -54,7 +54,7 @@ namespace DoAnSimple
             dGVImport.AutoResizeColumns();
 
             DisplayProduct();
-            DisplayCustomer();
+            DisplaySupplier();
             DisplayImport();
 
             dGVSupplier.Columns[0].HeaderText = "Id NCC";
@@ -98,7 +98,7 @@ namespace DoAnSimple
             dGVImport.Columns[6].HeaderText = "HSD";
 
         }
-        private void DisplayCustomer()
+        private void DisplaySupplier()
         {
             string sSql = "Select * from [Supplier]";
             DataTable dtSupplier = myDataServices.RunQuery(sSql);
@@ -123,13 +123,13 @@ namespace DoAnSimple
         {
             if (cmbSupplierFilter.SelectedIndex == 0)
             {
-                string sSql = "Select * From Customer Where [Name] = N'%" + txtSupplierSearch + "%'";
+                string sSql = "Select * From Supplier Where [Name] = N'%" + txtSupplierSearch + "%'";
                 DataTable dtSupplier = myDataServices.RunQuery(sSql);
                 dGVSupplier.DataSource = dtSupplier;
             }
             else if (cmbSupplierFilter.SelectedIndex == 1)
             {
-                string sSql = "Select * From Customer Where [id] = '%" + txtSupplierSearch + "%'";
+                string sSql = "Select * From Supplier Where [id] = '%" + txtSupplierSearch + "%'";
                 DataTable dtSupplier = myDataServices.RunQuery(sSql);
                 dGVSupplier.DataSource = dtSupplier;
             }
@@ -170,10 +170,8 @@ namespace DoAnSimple
         private void SetControls(bool edit)
         {
             // các textbox và combobox
-            txtSupplierName.Enabled = edit;
-            txtContact.Enabled = edit;
-            txtProductName.Enabled = edit;
-            txtProductId.Enabled = edit;
+            button1.Enabled = edit;
+            //btnProductSearch.Enabled = edit;
             txtPrice.Enabled = edit;
             textBox1.Enabled = edit;
             txtPrice.Enabled = edit;
@@ -185,6 +183,7 @@ namespace DoAnSimple
             btnNew.Enabled = edit;
             btnSave.Enabled = edit;
 
+            dGVSupplier.Enabled = edit;
         }
         int importId = -1;
         private void btnAddImport_Click(object sender, EventArgs e)
@@ -234,7 +233,7 @@ namespace DoAnSimple
                 dataRow["ProdId"] = textBox1.Text;
                 dataRow["Name"] = txtProductName.Text;
                 dataRow["ProdId"] = textBox1.Text;
-                dataRow["Quantity"] = txtPrice.Text;
+                dataRow["Quantity"] = txtQuantity.Text;
                 dataRow["Price"] = txtPrice.Text;
                 DateTime dt1 = dateTimePicker1.Value.Date;
                 DateTime dt2 = dateTimePicker2.Value.Date;
@@ -255,6 +254,7 @@ namespace DoAnSimple
             // Kiểm tra xem có dữ liệu để lưu không
             if (dGVImport.Rows.Count > 0)
             {
+
                 int r = dGVSupplier.CurrentRow.Index;
                 string SupplierId = dGVSupplier.Rows[r].Cells["Id"].Value.ToString();
                 string ImportDate = DateTime.Now.ToString();
@@ -265,48 +265,78 @@ namespace DoAnSimple
                 foreach (DataGridViewRow row in dGVImport.Rows)
                 {
                     // Lấy thông tin từ mỗi dòng
-                    int productId = Convert.ToInt32(row.Cells["Id"].Value);
-                    int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
-                    float price = float.Parse(row.Cells["Price"].Value.ToString());
-                    string prodid = row.Cells["ProdId"].Value.ToString();
-                    if (dateTimePicker1.Value > dateTimePicker2.Value)
+                    int productId;
+                    if (int.TryParse(row.Cells["Id"].Value?.ToString(), out productId))
                     {
-                        MessageBox.Show("Ngày sản xuất không được vượt qua ngày hết hạn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        dateTimePicker1.Focus();
-                        return;
+                        //Console.WriteLine("Quantity: " + row.Cells["Quantity"].Value);
+                        int quantity;
+                        if (int.TryParse(row.Cells["Quantity"].Value?.ToString(), out quantity))
+                        {
+                            float price;
+                            if (float.TryParse(row.Cells["Price"].Value?.ToString(), out price))
+                            {
+                                string prodid = row.Cells["ProdId"].Value?.ToString();
+
+                                // Kiểm tra ngày sản xuất và ngày hết hạn
+                                if (dateTimePicker1.Value > dateTimePicker2.Value || dateTimePicker1.Value > DateTime.Now)
+                                {
+                                    MessageBox.Show("Ngày sản xuất không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    dateTimePicker1.Focus();
+                                    return;
+                                }
+
+                                // Thực hiện lệnh SQL để cập nhật cơ sở dữ liệu
+                                string sql = "INSERT INTO Import_details (Id, ProductId, ProdId, Quantity, Price) VALUES (@ImportId, @ProductId, @prodid, @Quantity, @Price)";
+
+                                // Thực hiện ExecuteNonQuery để thực hiện lệnh SQL
+                                myDataServices.ExecuteNonQuery(sql,
+                                    new SqlParameter("@ImportId", importId),
+                                    new SqlParameter("@ProductId", productId),
+                                    new SqlParameter("@prodid", prodid),
+                                    new SqlParameter("@Quantity", quantity),
+                                    new SqlParameter("@Price", price)
+                                );
+
+                                DateTime dt1 = dateTimePicker1.Value.Date;
+                                DateTime dt2 = dateTimePicker2.Value.Date;
+                                sql = "UPDATE ProductDate SET ProDate = @date1, ExpDate = @date2, Quantity = @quan WHERE ProdId = @id";
+                                myDataServices.ExecuteNonQuery(sql,
+                                    new SqlParameter("@date1", dt1.ToString("yyyy-MM-dd")),
+                                    new SqlParameter("@date2", dt2.ToString("yyyy-MM-dd")),
+                                    new SqlParameter("@id", prodid),
+                                    new SqlParameter("@quan", quantity));
+
+                                // Lấy giá trị tổng tiền từ bảng Import
+                                string totalSql = "SELECT Total FROM [Import] WHERE Id = @ImportId";
+                                object totalObj = myDataServices.ExecuteScalar(totalSql, new SqlParameter("@ImportId", importId));
+                                txtTotal.Text = totalObj.ToString();
+
+                                // Kiểm tra giá trị tổng tiền có là null hay không
+                                float total;
+                                if (totalObj != null && float.TryParse(totalObj.ToString(), out total))
+                                {
+                                    // Hiển thị giá trị tổng tiền trong TextBox
+                                    txtTotal.Text = total.ToString();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Lỗi khi lấy giá trị tổng tiền từ cơ sở dữ liệu.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Giá tiền không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Số lượng không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
-                    if (dateTimePicker1.Value > DateTime.Now)
-                    {
-                        MessageBox.Show("Ngày sản xuất không được đến từ tương lai!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        dateTimePicker1.Focus();
-                        return;
-                    }
-                    // Thực hiện lệnh SQL để cập nhật cơ sở dữ liệu
-                    string sql = "INSERT INTO Import_details (Id, ProductId, ProdId, Quantity, Price) VALUES (@ImportId, @ProductId, @prodid, @Quantity, @Price)";
-
-                    // Thực hiện ExecuteNonQuery để thực hiện lệnh SQL
-                    myDataServices.ExecuteNonQuery(sql,
-                        new SqlParameter("@ImportId", importId),
-                        new SqlParameter("@ProductId", productId),
-                        new SqlParameter("@prodid", prodid),
-                        new SqlParameter("@Quantity", quantity),
-                        new SqlParameter("@Price", price)
-                    );
-
-                    DateTime dt1 = dateTimePicker1.Value.Date;
-                    DateTime dt2 = dateTimePicker2.Value.Date;
-                    sql = "Update ProductDate set ProDate = @date1, ExpDate = @date2, Quantity = @quan where ProdId = @id";
-                    myDataServices.ExecuteNonQuery(sql,
-                        new SqlParameter("@date1", dt1.Date.ToString()),
-                        new SqlParameter("@date2", dt2.Date.ToString()),
-                        new SqlParameter("@id", prodid),
-                        new SqlParameter("@quan", quantity));
-                    // Lấy giá trị tổng tiền từ bảng Order
-                    string totalSql = "SELECT Total FROM [Import] WHERE Id = @ImportId";
-                    float total = Convert.ToSingle(myDataServices.ExecuteScalar(totalSql, new SqlParameter("@ImportId", importId)));
-
-                    // Hiển thị giá trị tổng tiền trong TextBox
-                    txtTotal.Text = total.ToString();
+                    //else
+                    //{
+                    //    MessageBox.Show("Id sản phẩm không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //}
                 }
 
                 MessageBox.Show("Đã lưu thành công vào cơ sở dữ liệu.");
@@ -338,6 +368,27 @@ namespace DoAnSimple
             {
                 txtPrice.Text = string.Format("{0:#,0}", amount);
                 txtPrice.SelectionStart = txtPrice.Text.Length;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SetControls(false);
+        }
+
+        private void txtSupplierSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSupplierSearch.Text.Trim().Length == 0)
+            {
+                DisplaySupplier();
+            }
+        }
+
+        private void txtProductSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (txtProductSearch.Text.Trim().Length == 0)
+            {
+                DisplayProduct();
             }
         }
     }

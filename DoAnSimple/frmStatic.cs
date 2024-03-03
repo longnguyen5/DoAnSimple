@@ -403,5 +403,23 @@ namespace DoAnSimple
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
+
+        private void txtTotalIn_TextChanged(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtTotalIn.Text.Replace(",", ""), out decimal amount))
+            {
+                txtTotalIn.Text = string.Format("{0:#,0}", amount);
+                txtTotalIn.SelectionStart = txtTotalIn.Text.Length;
+            }
+        }
+
+        private void txtTotalOut_TextChanged(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtTotalOut.Text.Replace(",", ""), out decimal amount))
+            {
+                txtTotalOut.Text = string.Format("{0:#,0}", amount);
+                txtTotalOut.SelectionStart = txtTotalOut.Text.Length;
+            }
+        }
     }
 }
